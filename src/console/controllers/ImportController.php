@@ -3,12 +3,12 @@
 namespace barrelstrength\sproutbaseimport\console\controllers;
 
 use yii\console\Controller;
-use barrelstrength\sproutbase\app\import\models\Seed;
-use barrelstrength\sproutbase\app\import\enums\ImportType;
-use barrelstrength\sproutbase\app\import\models\Json as JsonModel;
+use barrelstrength\sproutbaseimport\models\Seed;
+use barrelstrength\sproutbaseimport\enums\ImportType;
+use barrelstrength\sproutbaseimport\models\Json as JsonModel;
 use Craft;
 use yii\console\ExitCode;
-use barrelstrength\sproutbase\app\import\queue\jobs\Import;
+use barrelstrength\sproutbaseimport\queue\jobs\Import;
 
 class ImportController extends Controller
 {
@@ -55,7 +55,7 @@ class ImportController extends Controller
     public function actionRun()
     {
         if (!$this->file) {
-            $message = Craft::t("sprout-base", "Invalid attribute: --file requires a valid file path");
+            $message = Craft::t("sprout-base-import", "Invalid attribute: --file requires a valid file path");
             $this->stdout($message);
 
             return ExitCode::DATAERR;

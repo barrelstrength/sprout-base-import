@@ -8,8 +8,8 @@
 namespace barrelstrength\sproutbaseimport\base;
 
 
-use barrelstrength\sproutbase\SproutBaseImport;
-use barrelstrength\sproutbase\app\import\models\jobs\SeedJob;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
+use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
 use Craft;
 use craft\base\Element;
 use craft\elements\db\ElementQuery;
@@ -35,7 +35,7 @@ abstract class ElementImporter extends Importer
         $model = $this->getModel();
 
         if (!is_object($model)) {
-            return $model.Craft::t('sprout-base', ' Model definition not found.');
+            return $model.Craft::t('sprout-base-import', ' Model definition not found.');
         }
 
         return $model::displayName();
@@ -129,7 +129,7 @@ abstract class ElementImporter extends Importer
 
                 $message = [];
                 if (!$relatedFields) {
-                    $message['error'] = Craft::t('sprout-base', 'Unable to resolve related relationships.');
+                    $message['error'] = Craft::t('sprout-base-import', 'Unable to resolve related relationships.');
                     $message['fields'] = $relatedFields;
 
                     SproutBaseImport::error($message);
@@ -146,7 +146,7 @@ abstract class ElementImporter extends Importer
 
                     $message = [];
                     if (!$fields) {
-                        $message['error'] = Craft::t('sprout-base', 'Unable to resolve matrix relationships.');
+                        $message['error'] = Craft::t('sprout-base-import', 'Unable to resolve matrix relationships.');
                         $message['fields'] = $fields;
 
                         SproutBaseImport::error($message);
@@ -228,7 +228,7 @@ abstract class ElementImporter extends Importer
                 $matchValue = $matchValue[0];
 
                 if (count($matchValue) > 0) {
-                    $message = Craft::t('sprout-base', 'The updateElement key can only retrieve a single match. Array with multiple values was provided. Only the first value has been used to find a match: {matchValue}', [
+                    $message = Craft::t('sprout-base-import', 'The updateElement key can only retrieve a single match. Array with multiple values was provided. Only the first value has been used to find a match: {matchValue}', [
                         'matchValue' => $matchValue
                     ]);
 

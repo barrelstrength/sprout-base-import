@@ -3,7 +3,7 @@
 namespace barrelstrength\sproutbaseimport\models;
 
 use craft\base\Model;
-use barrelstrength\sproutbase\app\import\enums\ImportType;
+use barrelstrength\sproutbaseimport\enums\ImportType;
 
 class Weed extends Model
 {

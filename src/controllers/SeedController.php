@@ -2,16 +2,16 @@
 
 namespace barrelstrength\sproutbaseimport\controllers;
 
-use barrelstrength\sproutbase\app\import\models\jobs\SeedJob;
-use barrelstrength\sproutbase\SproutBaseImport;
-use barrelstrength\sproutbase\app\import\importers\elements\Category;
-use barrelstrength\sproutbase\app\import\importers\elements\Entry;
-use barrelstrength\sproutbase\app\import\importers\elements\Tag;
-use barrelstrength\sproutbase\app\import\importers\elements\User;
+use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
+use barrelstrength\sproutbaseimport\importers\elements\Category;
+use barrelstrength\sproutbaseimport\importers\elements\Entry;
+use barrelstrength\sproutbaseimport\importers\elements\Tag;
+use barrelstrength\sproutbaseimport\importers\elements\User;
 use craft\helpers\DateTimeHelper;
 use craft\web\Controller;
 use Craft;
-use barrelstrength\sproutbase\app\import\enums\ImportType;
+use barrelstrength\sproutbaseimport\enums\ImportType;
 use yii\web\BadRequestHttpException;
 use yii\web\Response;
 

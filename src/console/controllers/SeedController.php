@@ -2,13 +2,13 @@
 
 namespace barrelstrength\sproutbaseimport\console\controllers;
 
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\helpers\DateTimeHelper;
 use yii\console\Controller;
 use Craft;
 use yii\console\ExitCode;
-use barrelstrength\sproutbase\app\import\models\jobs\SeedJob;
-use barrelstrength\sproutbase\app\import\enums\ImportType;
+use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
+use barrelstrength\sproutbaseimport\enums\ImportType;
 
 class SeedController extends Controller
 {
@@ -69,7 +69,7 @@ class SeedController extends Controller
     public function actionGenerate()
     {
         if (!$this->element) {
-            $message = Craft::t("sprout-base", "Invalid attribute: --element requires an Element class");
+            $message = Craft::t("sprout-base-import", "Invalid attribute: --element requires an Element class");
             $this->stdout($message);
 
             return ExitCode::DATAERR;

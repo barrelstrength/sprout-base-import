@@ -7,7 +7,7 @@
 
 namespace barrelstrength\sproutbaseimport\base;
 
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 use Faker\Factory;
 use Faker\Generator;
@@ -100,7 +100,7 @@ abstract class Importer
             $this->fakerService = $fakerService;
         }
 
-        $plugin = Craft::$app->plugins->getPlugin('sprout-base');
+        $plugin = Craft::$app->plugins->getPlugin('sprout-base-import');
 
         if ($plugin) {
             $settings = $plugin->getSettings();
@@ -149,7 +149,7 @@ abstract class Importer
      * - \craft\elements\Entry::class
      * - \craft\elements\Category::class
      * - \craft\models\Section::class
-     * - barrelstrength\sproutbase\app\import\importers\settings\Field::class
+     * - barrelstrength\sproutbaseimport\importers\settings\Field::class
      *
      * @return string
      */
@@ -213,7 +213,7 @@ abstract class Importer
             $className = $this->getModelName();
 
             if (!class_exists($className)) {
-                throw new \InvalidArgumentException(Craft::t('sprout-base', $className.' namespace on getModelName() method not found.'));
+                throw new \InvalidArgumentException(Craft::t('sprout-base-import', $className.' namespace on getModelName() method not found.'));
             }
 
             $this->model = new $className();

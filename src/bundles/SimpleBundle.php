@@ -7,8 +7,8 @@
 
 namespace barrelstrength\sproutbaseimport\bundles;
 
-use barrelstrength\sproutbase\app\import\base\Bundle;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\Bundle;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 
 class SimpleBundle extends Bundle
@@ -18,7 +18,7 @@ class SimpleBundle extends Bundle
      */
     public function getName(): string
     {
-        return Craft::t('sprout-base', 'Simple Bundle');
+        return Craft::t('sprout-base-import', 'Simple Bundle');
     }
 
     /**
@@ -26,7 +26,7 @@ class SimpleBundle extends Bundle
      */
     public function getDescription(): string
     {
-        return Craft::t('sprout-base', 'A simple bundle that installs some schema and moves some templates.');
+        return Craft::t('sprout-base-import', 'A simple bundle that installs some schema and moves some templates.');
     }
 
     /**

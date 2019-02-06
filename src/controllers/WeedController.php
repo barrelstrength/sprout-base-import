@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\controllers;
 
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 use craft\web\Controller;
 use yii\web\Response;

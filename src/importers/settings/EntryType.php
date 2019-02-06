@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\importers\settings;
 
-use barrelstrength\sproutbase\app\import\base\SettingsImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\SettingsImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\models\EntryType as EntryTypeModel;
 use craft\records\EntryType as EntryTypeRecord;
 use craft\elements\Entry;
@@ -16,7 +16,7 @@ class EntryType extends SettingsImporter
      */
     public function getName(): string
     {
-        return Craft::t('sprout-base', 'Entry Type');
+        return Craft::t('sprout-base-import', 'Entry Type');
     }
 
     /**
@@ -41,7 +41,7 @@ class EntryType extends SettingsImporter
         $entryType->name = $rows['name'] ?? null;
         $entryType->handle = $rows['handle'] ?? null;
         $entryType->hasTitleField = $rows['hasTitleField'] ?? true;
-        $entryType->titleLabel = $rows['titleLabel'] ?? Craft::t('sprout-base', 'Title');
+        $entryType->titleLabel = $rows['titleLabel'] ?? Craft::t('sprout-base-import', 'Title');
         $entryType->titleFormat = $rows['titleFormat'] ?? '';
 
         if (isset($rows['fieldLayout'])) {

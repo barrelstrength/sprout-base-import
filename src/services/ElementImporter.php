@@ -2,16 +2,16 @@
 
 namespace barrelstrength\sproutbaseimport\services;
 
-use barrelstrength\sproutbase\app\import\base\Importer;
-use barrelstrength\sproutbase\SproutBaseImport;
-use barrelstrength\sproutbase\app\import\events\ElementImportEvent;
+use barrelstrength\sproutbaseimport\base\Importer;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
+use barrelstrength\sproutbaseimport\events\ElementImportEvent;
 use Craft;
 use craft\base\Component;
 use craft\base\Element;
 use craft\base\Model;
-use barrelstrength\sproutbase\app\import\base\ElementImporter as BaseElementImporter;
-use barrelstrength\sproutbase\app\import\base\SettingsImporter as BaseSettingsImporter;
-use barrelstrength\sproutbase\app\import\base\SettingsImporter;
+use barrelstrength\sproutbaseimport\base\ElementImporter as BaseElementImporter;
+use barrelstrength\sproutbaseimport\base\SettingsImporter as BaseSettingsImporter;
+use barrelstrength\sproutbaseimport\base\SettingsImporter;
 
 /**
  *
@@ -83,7 +83,7 @@ class ElementImporter extends Component
         if (!empty($dataKeysDiff)) {
             $inputKeysText = implode(', ', $dataKeysDiff);
 
-            $message = Craft::t('sprout-base', "Invalid element keys '$inputKeysText'.");
+            $message = Craft::t('sprout-base-import', "Invalid element keys '$inputKeysText'.");
 
             SproutBaseImport::error($message);
 
@@ -107,7 +107,7 @@ class ElementImporter extends Component
                 if (!in_array($fieldHandle, $elementFieldHandles, false)) {
                     $key = 'field-null-'.$fieldHandle;
 
-                    $message = Craft::t('sprout-base', 'Could not find the {fieldHandle} field.', [
+                    $message = Craft::t('sprout-base-import', 'Could not find the {fieldHandle} field.', [
                         'fieldHandle' => $fieldHandle
                     ]);
 
@@ -157,7 +157,7 @@ class ElementImporter extends Component
 
                     $saved = true;
                 } catch (\Exception $e) {
-                    $message = Craft::t('sprout-base', "Error when saving Element. \n ");
+                    $message = Craft::t('sprout-base-import', "Error when saving Element. \n ");
                     $message .= $e->getMessage();
 
                     SproutBaseImport::error($message);
@@ -185,7 +185,7 @@ class ElementImporter extends Component
 
                 $fieldsMessage = is_array($fields) ? implode(', ', array_keys($fields)) : $fields;
 
-                $message = $title.' '.$fieldsMessage.Craft::t('sprout-base', ' Check field values if it exists.');
+                $message = $title.' '.$fieldsMessage.Craft::t('sprout-base-import', ' Check field values if it exists.');
 
                 SproutBaseImport::error($message);
 
@@ -218,7 +218,7 @@ class ElementImporter extends Component
      */
     public function logErrorByModel(Model $model)
     {
-        SproutBaseImport::error(Craft::t('sprout-base', 'Errors found on model while saving Element'));
+        SproutBaseImport::error(Craft::t('sprout-base-import', 'Errors found on model while saving Element'));
 
         SproutBaseImport::$app->importUtilities->addError('sproutImport', $model->getErrors());
     }

@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\services;
 
-use barrelstrength\sproutbase\app\import\base\FieldImporter as BaseFieldImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\FieldImporter as BaseFieldImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\base\Component;
 use craft\base\Element;
 use Craft;

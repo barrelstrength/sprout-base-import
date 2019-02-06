@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\queue\jobs;
 
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\queue\BaseJob;
 use Craft;
 

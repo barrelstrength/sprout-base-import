@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\importers\elements;
 
-use barrelstrength\sproutbase\app\import\base\ElementImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\ElementImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\commerce\base\Gateway;
 use craft\commerce\elements\Order as OrderElement;
 use Craft;
@@ -24,7 +24,7 @@ class Order extends ElementImporter
      */
     public function getName(): string
     {
-        return Craft::t('sprout-base', 'Commerce Orders');
+        return Craft::t('sprout-base-import', 'Commerce Orders');
     }
 
     /**
@@ -100,10 +100,10 @@ class Order extends ElementImporter
 
         if ($customer === null) {
             if (empty($customerEmail)) {
-                $message = Craft::t('sprout-base',
+                $message = Craft::t('sprout-base-import',
                     'customerId attribute is required.');
             } else {
-                $message = Craft::t('sprout-base',
+                $message = Craft::t('sprout-base-import',
                     'The customer '.$customerEmail.' was not found.');
             }
 
@@ -226,7 +226,7 @@ class Order extends ElementImporter
             $gateway = $order->getGateway();
 
             if (!$gateway) {
-                $error = Craft::t('sprout-base', 'There is no gateway selected for this order.');
+                $error = Craft::t('sprout-base-import', 'There is no gateway selected for this order.');
                 $utilities->addError('invalid-gateway', $error);
             }
             /**
@@ -266,7 +266,7 @@ class Order extends ElementImporter
                     $utilities->addError('invalid-payment', $exception->getMessage());
                 }
             } else {
-                $customError = Craft::t('sprout-base', 'Invalid payment or order. Please review.');
+                $customError = Craft::t('sprout-base-import', 'Invalid payment or order. Please review.');
                 $utilities->addError('invalid-payment', $customError);
             }
         }

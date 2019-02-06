@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\web\twig\variables;
 
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 
 class SproutImportVariable
@@ -36,6 +36,7 @@ class SproutImportVariable
      */
     public function getSproutImportImporters()
     {
+
         return SproutBaseImport::$app->importers->getSproutImportImporters();
     }
 

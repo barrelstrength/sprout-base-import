@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\services;
 
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 use craft\base\Component;
 
@@ -40,7 +40,7 @@ class ImportUtilities extends Component
     public function getValueByKey($key, $data, $default = null)
     {
         if (!is_array($data)) {
-            SproutBaseImport::error(Craft::t('sprout-base', 'getValueByKey() was passed in a non-array as data.'));
+            SproutBaseImport::error(Craft::t('sprout-base-import', 'getValueByKey() was passed in a non-array as data.'));
 
             return $default;
         }

@@ -2,9 +2,9 @@
 
 namespace barrelstrength\sproutbaseimport\queue\jobs;
 
-use barrelstrength\sproutbase\SproutBaseImport;
-use barrelstrength\sproutbase\app\import\models\Seed;
-use barrelstrength\sproutbase\app\import\models\Weed;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
+use barrelstrength\sproutbaseimport\models\Seed;
+use barrelstrength\sproutbaseimport\models\Weed;
 use craft\helpers\Json;
 use craft\queue\BaseJob;
 use Craft;
@@ -33,7 +33,7 @@ class Import extends BaseJob
             $weedModelAttributes = [
                 'seed' => $seedModel->enabled,
                 'seedType' => $seedModel->seedType,
-                'details' => Craft::t('sprout-base', 'Import Type: '.$seedModel->seedType),
+                'details' => Craft::t('sprout-base-import', 'Import Type: '.$seedModel->seedType),
                 'dateSubmitted' => $seedModel->dateCreated
             ];
 
@@ -50,7 +50,7 @@ class Import extends BaseJob
 
                 $errors = VarDumper::dumpAsString($errors);
 
-                $message = Craft::t('sprout-base', 'Error(s) while running Sprout Import job.');
+                $message = Craft::t('sprout-base-import', 'Error(s) while running Sprout Import job.');
 
                 SproutBaseImport::error($message);
                 SproutBaseImport::error($errors);
@@ -69,6 +69,6 @@ class Import extends BaseJob
      */
     protected function defaultDescription(): string
     {
-        return Craft::t('sprout-base', 'Importing Data.');
+        return Craft::t('sprout-base-import', 'Importing Data.');
     }
 }

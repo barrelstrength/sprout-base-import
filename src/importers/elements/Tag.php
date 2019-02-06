@@ -2,9 +2,9 @@
 
 namespace barrelstrength\sproutbaseimport\importers\elements;
 
-use barrelstrength\sproutbase\app\import\base\ElementImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
-use barrelstrength\sproutbase\app\import\models\jobs\SeedJob;
+use barrelstrength\sproutbaseimport\base\ElementImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
+use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
 use Craft;
 use craft\elements\Tag as TagElement;
 
@@ -64,7 +64,7 @@ class Tag extends ElementImporter
     public function getSeedSettingsErrors($settings)
     {
         if (isset($settings['tagGroup']) && empty($settings['tagGroup'])) {
-            return Craft::t('sprout-base', 'Tag Group is required.');
+            return Craft::t('sprout-base-import', 'Tag Group is required.');
         }
 
         return null;

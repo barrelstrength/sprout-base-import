@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\services;
 
-use barrelstrength\sproutbase\app\import\base\SettingsImporter as BaseSettingsImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\SettingsImporter as BaseSettingsImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\base\Component;
 use Craft;
 
@@ -22,7 +22,7 @@ class SettingsImporter extends Component
 
         if (!$model->validate(null, false)) {
 
-            SproutBaseImport::error(Craft::t('sprout-base', 'Errors found on model while saving Settings'));
+            SproutBaseImport::error(Craft::t('sprout-base-import', 'Errors found on model while saving Settings'));
 
             SproutBaseImport::$app->importUtilities->addError('invalid-model', $model->getErrors());
 
@@ -43,7 +43,7 @@ class SettingsImporter extends Component
             return false;
         } catch (\Exception $e) {
 
-            $message = Craft::t('sprout-base', 'Unable to import Settings.');
+            $message = Craft::t('sprout-base-import', 'Unable to import Settings.');
 
             SproutBaseImport::error($message);
             SproutBaseImport::error($e->getMessage());

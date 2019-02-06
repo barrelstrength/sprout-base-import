@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\importers\fields;
 
-use barrelstrength\sproutbase\app\import\base\FieldImporter;
+use barrelstrength\sproutbaseimport\base\FieldImporter;
 use craft\fields\Lightswitch as LightswitchField;
 
 class Lightswitch extends FieldImporter

@@ -2,39 +2,39 @@
 
 namespace barrelstrength\sproutbaseimport\services;
 
-use barrelstrength\sproutbase\app\import\base\Importer;
-use barrelstrength\sproutbase\SproutBaseImport;
-use barrelstrength\sproutbase\app\import\importers\elements\Asset;
-use barrelstrength\sproutbase\app\import\importers\elements\Category;
-use barrelstrength\sproutbase\app\import\importers\elements\Entry;
-use barrelstrength\sproutbase\app\import\importers\elements\Tag;
-use barrelstrength\sproutbase\app\import\importers\elements\User;
-use barrelstrength\sproutbase\app\import\importers\fields\Assets;
-use barrelstrength\sproutbase\app\import\importers\fields\Categories;
-use barrelstrength\sproutbase\app\import\importers\fields\Checkboxes;
-use barrelstrength\sproutbase\app\import\importers\fields\Color;
-use barrelstrength\sproutbase\app\import\importers\fields\Date;
-use barrelstrength\sproutbase\app\import\importers\fields\Dropdown;
-use barrelstrength\sproutbase\app\import\importers\fields\Entries;
-use barrelstrength\sproutbase\app\import\importers\fields\Lightswitch;
-use barrelstrength\sproutbase\app\import\importers\fields\Matrix;
-use barrelstrength\sproutbase\app\import\importers\fields\MultiSelect;
-use barrelstrength\sproutbase\app\import\importers\fields\Number;
-use barrelstrength\sproutbase\app\import\importers\fields\Email;
-use barrelstrength\sproutbase\app\import\importers\fields\PlainText;
-use barrelstrength\sproutbase\app\import\importers\fields\Products;
-use barrelstrength\sproutbase\app\import\importers\fields\RadioButtons;
-use barrelstrength\sproutbase\app\import\importers\fields\Redactor;
-use barrelstrength\sproutbase\app\import\importers\fields\Table;
-use barrelstrength\sproutbase\app\import\importers\fields\Tags;
-use barrelstrength\sproutbase\app\import\importers\fields\Url;
-use barrelstrength\sproutbase\app\import\importers\fields\Users;
-use barrelstrength\sproutbase\app\import\importers\settings\Field;
-use barrelstrength\sproutbase\app\import\importers\settings\Section;
-use barrelstrength\sproutbase\app\import\importers\settings\Widget;
-use barrelstrength\sproutbase\app\import\base\FieldImporter as BaseFieldImporter;
-use barrelstrength\sproutbase\app\import\models\Seed as SeedModel;
-use barrelstrength\sproutbase\app\import\models\Weed;
+use barrelstrength\sproutbaseimport\base\Importer;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
+use barrelstrength\sproutbaseimport\importers\elements\Asset;
+use barrelstrength\sproutbaseimport\importers\elements\Category;
+use barrelstrength\sproutbaseimport\importers\elements\Entry;
+use barrelstrength\sproutbaseimport\importers\elements\Tag;
+use barrelstrength\sproutbaseimport\importers\elements\User;
+use barrelstrength\sproutbaseimport\importers\fields\Assets;
+use barrelstrength\sproutbaseimport\importers\fields\Categories;
+use barrelstrength\sproutbaseimport\importers\fields\Checkboxes;
+use barrelstrength\sproutbaseimport\importers\fields\Color;
+use barrelstrength\sproutbaseimport\importers\fields\Date;
+use barrelstrength\sproutbaseimport\importers\fields\Dropdown;
+use barrelstrength\sproutbaseimport\importers\fields\Entries;
+use barrelstrength\sproutbaseimport\importers\fields\Lightswitch;
+use barrelstrength\sproutbaseimport\importers\fields\Matrix;
+use barrelstrength\sproutbaseimport\importers\fields\MultiSelect;
+use barrelstrength\sproutbaseimport\importers\fields\Number;
+use barrelstrength\sproutbaseimport\importers\fields\Email;
+use barrelstrength\sproutbaseimport\importers\fields\PlainText;
+use barrelstrength\sproutbaseimport\importers\fields\Products;
+use barrelstrength\sproutbaseimport\importers\fields\RadioButtons;
+use barrelstrength\sproutbaseimport\importers\fields\Redactor;
+use barrelstrength\sproutbaseimport\importers\fields\Table;
+use barrelstrength\sproutbaseimport\importers\fields\Tags;
+use barrelstrength\sproutbaseimport\importers\fields\Url;
+use barrelstrength\sproutbaseimport\importers\fields\Users;
+use barrelstrength\sproutbaseimport\importers\settings\Field;
+use barrelstrength\sproutbaseimport\importers\settings\Section;
+use barrelstrength\sproutbaseimport\importers\settings\Widget;
+use barrelstrength\sproutbaseimport\base\FieldImporter as BaseFieldImporter;
+use barrelstrength\sproutbaseimport\models\Seed as SeedModel;
+use barrelstrength\sproutbaseimport\models\Weed;
 use craft\base\Component;
 use craft\base\Element;
 use craft\events\RegisterComponentTypesEvent;
@@ -238,7 +238,7 @@ class Importers extends Component
     {
         // Make sure we have an @model attribute
         if (!isset($settings['@model'])) {
-            $message = Craft::t('sprout-base', 'Importer class not found. Each item being imported requires an "@model" attribute.');
+            $message = Craft::t('sprout-base-import', 'Importer class not found. Each item being imported requires an "@model" attribute.');
 
             $errorLog = [];
             $errorLog['message'] = $message;
@@ -254,7 +254,7 @@ class Importers extends Component
         // Make sure the @model attribute class exists
         if (!class_exists($settings['@model'])) {
 
-            $message = Craft::t('sprout-base', 'Class defined in @model attribute could not be found: {class}', [
+            $message = Craft::t('sprout-base-import', 'Class defined in @model attribute could not be found: {class}', [
                 'class' => $settings['@model']
             ]);
 
@@ -310,7 +310,7 @@ class Importers extends Component
 
             if ($importerClass->model instanceof Element) {
                 /**
-                 * @var $importerClass \barrelstrength\sproutbase\app\import\base\ElementImporter
+                 * @var $importerClass \barrelstrength\sproutbaseimport\base\ElementImporter
                  */
                 $newModel = SproutBaseImport::$app->elementImporter->saveElement($row, $importerClass);
             } else {

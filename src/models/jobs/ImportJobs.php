@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\models\jobs;
 
-use barrelstrength\sproutbase\app\import\queue\jobs\Import;
+use barrelstrength\sproutbaseimport\queue\jobs\Import;
 use craft\base\Model;
 
 class ImportJobs extends Model

@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\importers\fields;
 
-use barrelstrength\sproutbase\app\import\base\FieldImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\FieldImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\elements\Tag;
 use craft\fields\Tags as TagsField;
 use Craft;
@@ -58,7 +58,7 @@ class Tags extends FieldImporter
         ];
 
         if (empty($settings['source'])) {
-            SproutBaseImport::info(Craft::t('sprout-base', 'Unable to generate Mock Data for relations field: {fieldName}. No Source found.', [
+            SproutBaseImport::info(Craft::t('sprout-base-import', 'Unable to generate Mock Data for relations field: {fieldName}. No Source found.', [
                 'fieldName' => $this->model->name
             ]));
             return null;

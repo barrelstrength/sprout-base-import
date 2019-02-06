@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\importers\elements;
 
-use barrelstrength\sproutbase\app\import\base\ElementImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\ElementImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\commerce\elements\Product as ProductElement;
 use craft\commerce\records\Purchasable;
 

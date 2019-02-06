@@ -2,10 +2,10 @@
 
 namespace barrelstrength\sproutbaseimport\importers\elements;
 
-use barrelstrength\sproutbase\app\import\models\jobs\SeedJob;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
-use barrelstrength\sproutbase\app\import\base\ElementImporter;
+use barrelstrength\sproutbaseimport\base\ElementImporter;
 use craft\elements\User as UserElement;
 
 class User extends ElementImporter

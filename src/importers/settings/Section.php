@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\importers\settings;
 
-use barrelstrength\sproutbase\app\import\base\SettingsImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\SettingsImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 use craft\models\Section as SectionModel;
 use craft\models\Section_SiteSettings;

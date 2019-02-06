@@ -2,9 +2,9 @@
 
 namespace barrelstrength\sproutbaseimport\importers\settings;
 
-use barrelstrength\sproutbase\app\import\base\SettingsImporter;
-use barrelstrength\sproutbase\app\import\models\importers\Field as FieldModel;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\SettingsImporter;
+use barrelstrength\sproutbaseimport\models\importers\Field as FieldModel;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\records\Field as FieldRecord;
 use Craft;
 
@@ -15,7 +15,7 @@ class Field extends SettingsImporter
      */
     public function getName(): string
     {
-        return Craft::t('sprout-base', 'Field');
+        return Craft::t('sprout-base-import', 'Field');
     }
 
     /**
@@ -72,7 +72,7 @@ class Field extends SettingsImporter
 
             if (!$fieldsService->saveField($fieldType)) {
 
-                SproutBaseImport::error(Craft::t('sprout-base', 'Cannot save Field: '.$fieldType::displayName()));
+                SproutBaseImport::error(Craft::t('sprout-base-import', 'Cannot save Field: '.$fieldType::displayName()));
                 SproutBaseImport::info($fieldType);
 
                 return false;

@@ -3,14 +3,14 @@
 namespace barrelstrength\sproutbaseimport\importers\elements;
 
 use Craft;
-use barrelstrength\sproutbase\app\import\base\ElementImporter;
+use barrelstrength\sproutbaseimport\base\ElementImporter;
 use craft\elements\Asset as AssetElement;
 
 class Asset extends ElementImporter
 {
     public function getName(): string
     {
-        return Craft::t('sprout-base', 'Assets');
+        return Craft::t('sprout-base-import', 'Assets');
     }
 
     /**

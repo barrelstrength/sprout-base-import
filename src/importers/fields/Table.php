@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\importers\fields;
 
-use barrelstrength\sproutbase\app\import\base\FieldImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\FieldImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\fields\Table as TableField;
 
 class Table extends FieldImporter

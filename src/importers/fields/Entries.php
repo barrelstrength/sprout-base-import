@@ -2,8 +2,8 @@
 
 namespace barrelstrength\sproutbaseimport\importers\fields;
 
-use barrelstrength\sproutbase\app\import\base\FieldImporter;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\FieldImporter;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\elements\Entry;
 use craft\fields\Entries as EntriesField;
 use Craft;
@@ -58,7 +58,7 @@ class Entries extends FieldImporter
         ];
 
         if (!isset($settings['sources'])) {
-            SproutBaseImport::info(Craft::t('sprout-base', 'Unable to generate Mock Data for relations field: {fieldName}. No Sources found.', [
+            SproutBaseImport::info(Craft::t('sprout-base-import', 'Unable to generate Mock Data for relations field: {fieldName}. No Sources found.', [
                 'fieldName' => $this->model->name
             ]));
             return null;

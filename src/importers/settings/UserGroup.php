@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\importers\settings;
 
-use barrelstrength\sproutbase\app\import\base\SettingsImporter;
+use barrelstrength\sproutbaseimport\base\SettingsImporter;
 use Craft;
 use craft\models\UserGroup as UserGroupModel;
 use craft\records\UserGroup as UserGroupRecord;
@@ -19,7 +19,7 @@ class UserGroup extends SettingsImporter
      */
     public function getName(): string
     {
-        return Craft::t('sprout-base', 'User Group');
+        return Craft::t('sprout-base-import', 'User Group');
     }
 
     /**

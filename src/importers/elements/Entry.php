@@ -2,10 +2,10 @@
 
 namespace barrelstrength\sproutbaseimport\importers\elements;
 
-use barrelstrength\sproutbase\app\import\models\jobs\SeedJob;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
-use barrelstrength\sproutbase\app\import\base\ElementImporter;
+use barrelstrength\sproutbaseimport\base\ElementImporter;
 use craft\base\Field;
 use craft\elements\Entry as EntryElement;
 
@@ -58,7 +58,7 @@ class Entry extends ElementImporter
     public function getSeedSettingsErrors($settings)
     {
         if (isset($settings['channel']) && empty($settings['channel'])) {
-            return Craft::t('sprout-base', 'Section is required.');
+            return Craft::t('sprout-base-import', 'Section is required.');
         }
 
         return null;

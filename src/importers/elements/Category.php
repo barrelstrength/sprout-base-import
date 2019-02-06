@@ -2,10 +2,10 @@
 
 namespace barrelstrength\sproutbaseimport\importers\elements;
 
-use barrelstrength\sproutbase\SproutBaseImport;
-use barrelstrength\sproutbase\app\import\models\jobs\SeedJob;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
+use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
 use Craft;
-use barrelstrength\sproutbase\app\import\base\ElementImporter;
+use barrelstrength\sproutbaseimport\base\ElementImporter;
 use craft\elements\Category as CategoryElement;
 
 class Category extends ElementImporter
@@ -62,7 +62,7 @@ class Category extends ElementImporter
     {
 
         if (isset($settings['categoryGroup']) && empty($settings['categoryGroup'])) {
-            return Craft::t('sprout-base', 'Category Group is required.');
+            return Craft::t('sprout-base-import', 'Category Group is required.');
         }
 
         return null;

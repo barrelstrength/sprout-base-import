@@ -2,16 +2,16 @@
 
 namespace barrelstrength\sproutbaseimport\controllers;
 
-use barrelstrength\sproutbase\app\import\base\Bundle;
-use barrelstrength\sproutbase\app\import\models\jobs\ImportJobs;
-use barrelstrength\sproutbase\app\import\models\Json;
-use barrelstrength\sproutbase\app\import\models\Seed;
-use barrelstrength\sproutbase\app\import\queue\jobs\Import;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\Bundle;
+use barrelstrength\sproutbaseimport\models\jobs\ImportJobs;
+use barrelstrength\sproutbaseimport\models\Json;
+use barrelstrength\sproutbaseimport\models\Seed;
+use barrelstrength\sproutbaseimport\queue\jobs\Import;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 use craft\helpers\FileHelper;
 use craft\web\Controller;
-use barrelstrength\sproutbase\app\import\enums\ImportType;
+use barrelstrength\sproutbaseimport\enums\ImportType;
 use craft\web\UploadedFile;
 use yii\base\ErrorException;
 use yii\web\BadRequestHttpException;
@@ -109,7 +109,7 @@ class ImportController extends Controller
                     ]));
                 }
 
-                Craft::$app->getSession()->setNotice(Craft::t('sprout-base', 'Importing bundle.'));
+                Craft::$app->getSession()->setNotice(Craft::t('sprout-base-import', 'Importing bundle.'));
             } catch (\Exception $e) {
                 $importJobs->addError('queue', $e->getMessage());
 
@@ -123,7 +123,7 @@ class ImportController extends Controller
                 'errors' => $importJobs->getErrors()
             ]);
 
-            Craft::$app->getSession()->setError(Craft::t('sprout-base', 'Unable to import bundle.'));
+            Craft::$app->getSession()->setError(Craft::t('sprout-base-import', 'Unable to import bundle.'));
         }
     }
 
@@ -188,7 +188,7 @@ class ImportController extends Controller
             $fileContent = file_get_contents($filepath);
 
             if ($fileContent === false) {
-                $errorMessage = Craft::t('sprout-base', 'Unable to import file: {filepath}', [
+                $errorMessage = Craft::t('sprout-base-import', 'Unable to import file: {filepath}', [
                     'filepath' => $filepath
                 ]);
                 $importJobs->addError('file', $errorMessage);

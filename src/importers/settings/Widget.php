@@ -2,9 +2,9 @@
 
 namespace barrelstrength\sproutbaseimport\importers\settings;
 
-use barrelstrength\sproutbase\app\import\base\SettingsImporter;
-use barrelstrength\sproutbase\app\import\models\importers\Widget as WidgetModel;
-use barrelstrength\sproutbase\SproutBaseImport;
+use barrelstrength\sproutbaseimport\base\SettingsImporter;
+use barrelstrength\sproutbaseimport\models\importers\Widget as WidgetModel;
+use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\records\Widget as WidgetRecord;
 use Craft;
 use craft\base\WidgetInterface;
@@ -16,7 +16,7 @@ class Widget extends SettingsImporter
      */
     public function getName(): string
     {
-        return Craft::t('sprout-base', 'Widget');
+        return Craft::t('sprout-base-import', 'Widget');
     }
 
     /**
@@ -53,7 +53,7 @@ class Widget extends SettingsImporter
         if ($widget) {
             $this->model = $widget;
         } else {
-            SproutBaseImport::error(Craft::t('sprout-base', 'Cannot save Widget: '.$widget::displayName()));
+            SproutBaseImport::error(Craft::t('sprout-base-import', 'Cannot save Widget: '.$widget::displayName()));
             SproutBaseImport::info($widget);
         }
 
