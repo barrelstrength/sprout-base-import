@@ -38,7 +38,7 @@ class SimpleBundle extends Bundle
      */
     public function getSchemaFolder(): string
     {
-        return SproutBaseImport::getInstance()->getBasePath().DIRECTORY_SEPARATOR.'app/import/bundles/resources/simple/schema';
+        return SproutBaseImport::getInstance()->getBasePath().DIRECTORY_SEPARATOR.'bundles/resources/simple/schema';
     }
 
     /**
@@ -50,7 +50,7 @@ class SimpleBundle extends Bundle
      */
     public function getSourceTemplateFolder(): string
     {
-        return SproutBaseImport::getInstance()->getBasePath().DIRECTORY_SEPARATOR.'app/import/bundles/resources/simple/templates';
+        return SproutBaseImport::getInstance()->getBasePath().DIRECTORY_SEPARATOR.'bundles/resources/simple/templates';
     }
 
 }

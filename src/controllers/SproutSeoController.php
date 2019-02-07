@@ -30,7 +30,7 @@ class SproutSeoController extends Controller
                 'importableJson' => $importableJson
             ];
 
-            Craft::$app->getUrlManager()->setRouteParams([
+            return Craft::$app->getUrlManager()->setRouteParams([
                 'params' => $params
             ]);
         } else {

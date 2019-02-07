@@ -50,6 +50,8 @@ class Seed extends Component
         }
 
         try {
+            //SproutBaseImport::$app->seed->runSeed($seedJobModel->getAttributes());
+            // @todo temporary for debugging
             Craft::$app->queue->push(new SeedJob([
                 'seedJob' => $seedJobModel->getAttributes()
             ]));

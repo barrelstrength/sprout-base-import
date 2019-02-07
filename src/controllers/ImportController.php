@@ -41,7 +41,6 @@ class ImportController extends Controller
 
         // Queue our Jobs
         if (count($importJobs->jobs)) {
-
             try {
                 foreach ($importJobs->jobs as $job) {
                     Craft::$app->queue->push(new Import([
@@ -59,12 +58,12 @@ class ImportController extends Controller
                 SproutBaseImport::error($e->getMessage());
             }
         } else {
-            Craft::$app->getUrlManager()->setRouteParams([
+            Craft::$app->getSession()->setError(Craft::t('sprout-import', 'Unable to queue import.'));
+
+            return Craft::$app->getUrlManager()->setRouteParams([
                 'importData' => $importDataString,
                 'errors' => $importJobs->getErrors()
             ]);
-
-            Craft::$app->getSession()->setError(Craft::t('sprout-import', 'Unable to queue import.'));
         }
     }
 
@@ -118,12 +117,11 @@ class ImportController extends Controller
         } else {
 
             SproutBaseImport::error($importJobs->getErrors());
+            Craft::$app->getSession()->setError(Craft::t('sprout-base-import', 'Unable to import bundle.'));
 
-            Craft::$app->getUrlManager()->setRouteParams([
+            return Craft::$app->getUrlManager()->setRouteParams([
                 'errors' => $importJobs->getErrors()
             ]);
-
-            Craft::$app->getSession()->setError(Craft::t('sprout-base-import', 'Unable to import bundle.'));
         }
     }
 

@@ -127,7 +127,12 @@ class Category extends ElementImporter
 
         $fieldLayoutId = $categoryGroup->fieldLayoutId;
 
-        return Craft::$app->getFields()->getFieldsByLayoutId($fieldLayoutId);
+        // Check if $fieldLayoutId has a value to avoid method error
+        if ($fieldLayoutId) {
+            return Craft::$app->getFields()->getFieldsByLayoutId($fieldLayoutId);
+        }
+
+        return null;
     }
 
     /**

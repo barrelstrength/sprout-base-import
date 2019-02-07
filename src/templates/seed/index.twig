@@ -32,7 +32,7 @@
         {{ csrfInput() }}
         {{ redirectInput('sprout-import/seed') }}
         <input type="hidden" name="action"
-               value="sprout/seed/generate-element-seeds">
+               value="sproutbaseimport/seed/generate-element-seeds">
 
         {{ forms.textField({
             label: 'How many items to seed?'|t('sprout-base-import'),
@@ -107,7 +107,7 @@
 
 {% endblock %}
 
-{% do view.registerAssetBundle("barrelstrength\\sproutbase\\app\\import\\web\\assets\\import\\ImportAsset") %}
+{% do view.registerAssetBundle("barrelstrength\\sproutbaseimport\\web\\assets\\import\\ImportAsset") %}
 
 {% js %}
 

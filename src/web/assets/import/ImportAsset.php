@@ -10,7 +10,7 @@ class ImportAsset extends AssetBundle
 {
     public function init()
     {
-        $this->sourcePath = '@sproutbase/app/import/web/assets/import/dist';
+        $this->sourcePath = '@sproutbaseimport/web/assets/import/dist';
 
         $this->depends = [
             SproutBaseCpAsset::class,

@@ -140,11 +140,9 @@ class SeedController extends Controller
 
             SproutBaseImport::error($errors);
 
-            Craft::$app->getUrlManager()->setRouteParams([
+            return Craft::$app->getUrlManager()->setRouteParams([
                 'seedJob' => $seedJob
             ]);
-
-            return false;
         }
 
         Craft::$app->getSession()->setNotice(Craft::t('sprout-import', '{quantity} Element(s) queued for seeding.', [

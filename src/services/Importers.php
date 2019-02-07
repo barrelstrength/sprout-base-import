@@ -227,8 +227,8 @@ class Importers extends Component
      * and return it if it exists.
      *
      * Examples:
-     * - "@model": "barrelstrength\\sproutbase\\app\\import\\importers\\elements\\Entry"
-     * - "@model": "barrelstrength\\sproutbase\\app\\import\\importers\\settings\\Field"
+     * - "@model": "barrelstrength\\sproutbaseimport\\importers\\elements\\Entry"
+     * - "@model": "barrelstrength\\sproutbaseimport\\importers\\settings\\Field"
      *
      * @param      $settings
      *
