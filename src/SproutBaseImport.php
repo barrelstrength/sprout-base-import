@@ -11,6 +11,7 @@ use barrelstrength\sproutbaseimport\controllers\ImportController;
 use barrelstrength\sproutbaseimport\console\controllers\ImportController as ConsoleImportController;
 use barrelstrength\sproutbaseimport\console\controllers\SeedController as ConsoleSeedController;
 use barrelstrength\sproutbaseimport\controllers\SeedController;
+use barrelstrength\sproutbaseimport\controllers\SproutSeoController;
 use barrelstrength\sproutbaseimport\controllers\WeedController;
 use barrelstrength\sproutbase\base\BaseSproutTrait;
 use barrelstrength\sproutbaseimport\web\twig\variables\SproutImportVariable;
@@ -115,6 +116,7 @@ class SproutBaseImport extends Module
                 'import' => ImportController::class,
                 'seed' => SeedController::class,
                 'weed' => WeedController::class,
+                'redirects-tool' => SproutSeoController::class,
             ];
         }
 

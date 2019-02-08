@@ -57,7 +57,14 @@ class ImportController extends Controller
 
                 SproutBaseImport::error($e->getMessage());
             }
-        } else {
+        }
+
+        if (empty($uploadedFiles)) {
+            $importJobs->addError('empty-files',
+                Craft::t("sprout-import", "No files uploaded."));
+        }
+
+        if ($importJobs->hasErrors()) {
             Craft::$app->getSession()->setError(Craft::t('sprout-import', 'Unable to queue import.'));
 
             return Craft::$app->getUrlManager()->setRouteParams([
@@ -240,7 +247,7 @@ class ImportController extends Controller
             if ($file->getHasError()) {
                 $importJobs->addError('file', $file->error);
                 SproutBaseImport::error($file->error);
-                break;
+                continue;
             }
 
             $fileContent = file_get_contents($file->tempName);
@@ -250,9 +257,9 @@ class ImportController extends Controller
 
             // Make sure we have JSON
             if ($jsonContent->hasErrors()) {
-                $importJobs->addError('json', $jsonContent->getFirstError('json'));
+                $importJobs->addError('json', $file->name . ' ' . $jsonContent->getFirstError('json'));
                 SproutBaseImport::error($jsonContent->getFirstError('json'));
-                break;
+                continue;
             }
 
             $tempFilePath = $tempFolderPath.$file->name;

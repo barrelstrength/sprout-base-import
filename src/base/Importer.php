@@ -100,7 +100,7 @@ abstract class Importer
             $this->fakerService = $fakerService;
         }
 
-        $plugin = Craft::$app->plugins->getPlugin('sprout-base-import');
+        $plugin = Craft::$app->getPlugins()->getPlugin('sprout-import');
 
         if ($plugin) {
             $settings = $plugin->getSettings();
