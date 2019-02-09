@@ -18,7 +18,7 @@ abstract class SproutBaseImportHelper
      */
     public static function registerModule()
     {
-        $moduleId = 'sproutbaseimport';
+        $moduleId = 'sprout-base-import';
 
         if (!Craft::$app->hasModule($moduleId)) {
 
