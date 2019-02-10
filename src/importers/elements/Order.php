@@ -13,6 +13,8 @@ use craft\commerce\models\Customer;
 use craft\commerce\Plugin;
 use craft\commerce\records\Purchasable;
 use craft\commerce\records\Transaction;
+use craft\commerce\services\LineItems;
+use yii\base\Exception;
 
 class Order extends ElementImporter
 {
@@ -46,9 +48,13 @@ class Order extends ElementImporter
      */
     public function setModel($model, array $settings = [])
     {
+        /** @var Plugin $commerce */
+        $commerce = Plugin::getInstance();
+
         $number = $settings['attributes']['number'] ?? null;
+
         if ($number) {
-            $orderCart = Plugin::getInstance()->getOrders()->getOrderByNumber($number);
+            $orderCart = $commerce->getOrders()->getOrderByNumber($number);
             if ($orderCart) {
                 $this->model = $orderCart;
             }
@@ -57,10 +63,10 @@ class Order extends ElementImporter
         $orderStatusId = $settings['attributes']['orderStatusId'] ?? null;
 
         if (!$orderStatusId) {
-            $orderStatus = Plugin::getInstance()->getOrderStatuses()->getDefaultOrderStatus();
+            $orderStatus = $commerce->getOrderStatuses()->getDefaultOrderStatus();
             $orderStatusId = $orderStatus->id;
         } elseif (is_string($orderStatusId)) {
-            $orderStatus = Plugin::getInstance()->getOrderStatuses()->getOrderStatusByHandle($orderStatusId);
+            $orderStatus = $commerce->getOrderStatuses()->getOrderStatusByHandle($orderStatusId);
 
             $orderStatusId = $orderStatus->id ?? null;
             // Avoid setAttributes error
@@ -70,7 +76,7 @@ class Order extends ElementImporter
         $this->model->setAttributes($settings['attributes'], false);
 
         if ($this->model->id === null) {
-            $this->model->number = Plugin::getInstance()->getCarts()->generateCartNumber();
+            $this->model->number = $commerce->getCarts()->generateCartNumber();
         }
 
         $customer = null;
@@ -80,7 +86,7 @@ class Order extends ElementImporter
             $user = Craft::$app->users->getUserByUsernameOrEmail($customerEmail);
 
             if ($user) {
-                $customer = Plugin::getInstance()->getCustomers()->getCustomerByUserId((int)$user->id);
+                $customer = $commerce->getCustomers()->getCustomerByUserId((int)$user->id);
 
                 if ($customer) {
                     $this->model->customerId = $customer->id;
@@ -92,14 +98,14 @@ class Order extends ElementImporter
                     }
                 }
 
-                Plugin::getInstance()->getCustomers()->saveCustomer($customer);
+                $commerce->getCustomers()->saveCustomer($customer);
             }
         } else {
-            $customer = Plugin::getInstance()->getCustomers()->getCustomerById($customerEmail);
+            $customer = $commerce->getCustomers()->getCustomerById($customerEmail);
         }
 
         if ($customer === null) {
-            if (empty($customerEmail)) {
+            if ($customerEmail === null) {
                 $message = Craft::t('sprout-base-import',
                     'customerId attribute is required.');
             } else {
@@ -107,7 +113,7 @@ class Order extends ElementImporter
                     'The customer '.$customerEmail.' was not found.');
             }
 
-            throw new \Exception($message);
+            throw new Exception($message);
         }
 
         if ($customer) {
@@ -128,11 +134,11 @@ class Order extends ElementImporter
             $billingAddress->lastName = $address['lastName'];
             $countryCode = $address['countryCode'];
 
-            $countryObj = Plugin::getInstance()->getCountries()->getCountryByIso($countryCode);
+            $countryObj = $commerce->getCountries()->getCountryByIso($countryCode);
             $billingAddress->countryId = $countryObj ? $countryObj->id : null;
 
             if ($billingAddress->countryId) {
-                $stateObj = Plugin::getInstance()
+                $stateObj = $commerce
                     ->getStates()
                     ->getStateByAbbreviation($billingAddress->countryId, $address['state']);
 
@@ -150,12 +156,12 @@ class Order extends ElementImporter
 
             $billingAddress->zipCode = $address['zipCode'] ?? null;
 
-            Plugin::getInstance()->getCustomers()->saveAddress($billingAddress, $customer);
+            $commerce->getCustomers()->saveAddress($billingAddress, $customer);
 
             $customer->primaryBillingAddressId = $billingAddress->id;
             $customer->primaryShippingAddressId = $billingAddress->id;
 
-            Plugin::getInstance()->getCustomers()->saveCustomer($customer);
+            $commerce->getCustomers()->saveCustomer($customer);
         }
 
         if ($customer->id) {
@@ -174,7 +180,7 @@ class Order extends ElementImporter
         if ($settings['lineItems']) {
 
             // Remove line item if it exist to avoid appending of line item values
-            Plugin::getInstance()->getLineItems()->deleteAllLineItemsByOrderId($this->model->id);
+            $commerce->getLineItems()->deleteAllLineItemsByOrderId($this->model->id);
 
             foreach ($settings['lineItems'] as $item) {
 
@@ -183,6 +189,7 @@ class Order extends ElementImporter
                 $sku = $item['sku'] ?? null;
 
                 if ($sku) {
+                    /** @var \craft\commerce\base\Purchasable $purchasable */
                     $purchasable = Purchasable::find()->where(['sku' => $sku])->one();
 
                     if ($purchasable) {
@@ -190,8 +197,10 @@ class Order extends ElementImporter
                     }
                 }
 
-                $lineItem = Plugin::getInstance()->getLineItems()
-                    ->resolveLineItem($this->model->id, $purchasableId, $item['options'], $item['qty'], '');
+                /** @var LineItems $lineItems */
+                $lineItems = $commerce->getLineItems();
+                $lineItem = $lineItems->resolveLineItem($this->model->id, $purchasableId, $item['options']);
+
                 $lineObjectItems[] = $lineItem;
 
                 if ($this->model === null) {
@@ -206,7 +215,7 @@ class Order extends ElementImporter
 
         $this->model->isCompleted = $settings['attributes']['isCompleted'] ?? 1;
 
-        $this->model->paymentCurrency = Plugin::getInstance()->getPaymentCurrencies()->getPrimaryPaymentCurrencyIso();
+        $this->model->paymentCurrency = $commerce->getPaymentCurrencies()->getPrimaryPaymentCurrencyIso();
     }
 
     /**
@@ -297,7 +306,10 @@ class Order extends ElementImporter
     {
         $number = md5(uniqid(mt_rand(), true));
 
-        $order = Plugin::getInstance()->getOrders()->getOrderByNumber($number);
+        /** @var Plugin $plugin */
+        $plugin = Plugin::getInstance();
+        $order = $plugin->getOrders()->getOrderByNumber($number);
+
         // Make sure not duplicate number
         if ($order) {
             return $this->getRandomCartNumber();

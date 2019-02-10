@@ -39,6 +39,7 @@ use craft\base\Component;
 use craft\base\Element;
 use craft\events\RegisterComponentTypesEvent;
 use Craft;
+use craft\helpers\Json;
 
 /**
  *
@@ -296,7 +297,7 @@ class Importers extends Component
             // When seeding entries, we have an array
             $rows = $importData;
         } else {
-            $rows = json_decode($importData, true);
+            $rows = Json::decode($importData, true);
         }
 
         foreach ($rows as $row) {

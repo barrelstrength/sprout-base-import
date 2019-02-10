@@ -99,9 +99,8 @@ abstract class SettingsImporter extends Importer
     public function returnRelatedValue($params)
     {
         $recordClass = $this->getRecordName();
-        /**
-         * @var $record BaseActiveRecord
-         */
+
+        /** @var $record BaseActiveRecord */
         $record = new $recordClass();
 
         $record = $record::findOne($params);

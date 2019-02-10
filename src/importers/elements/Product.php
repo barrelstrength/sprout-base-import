@@ -54,7 +54,7 @@ class Product extends ElementImporter
                             ->addError('exist-'.$variant['sku'], $variant['sku'].' sku already exists');
                     }
                 } else {
-                    $rowVariants["new".$key] = $variant;
+                    $rowVariants['new'.$key] = $variant;
                 }
             }
         }

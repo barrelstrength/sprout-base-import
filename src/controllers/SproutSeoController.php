@@ -85,6 +85,7 @@ class SproutSeoController extends Controller
         }
 
         if (!empty($sproutSeoImportJson)) {
+            /** @noinspection PhpComposerExtensionStubsInspection */
             $json = json_encode($sproutSeoImportJson, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
         }
 

@@ -2,6 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\console\controllers;
 
+use barrelstrength\sproutbaseimport\base\Importer;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\helpers\DateTimeHelper;
 use yii\console\Controller;
@@ -20,7 +21,7 @@ class SeedController extends Controller
     public $element;
 
     /**
-     * @var string Any settings necessary for the seed job
+     * @var array Any settings necessary for the seed job
      *
      * @example
      * A settings array can be sent as a string using a comma delimiter
@@ -75,6 +76,7 @@ class SeedController extends Controller
             return ExitCode::DATAERR;
         }
 
+        /** @var Importer[] $allSeedImporters */
         $allSeedImporters = SproutBaseImport::$app->importers->getSproutImportSeedImporters();
 
         foreach ($allSeedImporters as $seedImporter) {
@@ -90,7 +92,7 @@ class SeedController extends Controller
         if ($this->settings) {
             $seedSettings = [];
             foreach ($this->settings as $key => $value) {
-                if (strstr($value, '=')) {
+                if (false !== strpos($value, '=')) {
                     $value = explode("=", $value);
                 }
 

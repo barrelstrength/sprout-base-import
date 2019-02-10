@@ -184,6 +184,10 @@ class Seed extends Component
         }
     }
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public function getSeeds()
     {
         $query = new Query();
