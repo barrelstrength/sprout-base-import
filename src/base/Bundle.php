@@ -27,7 +27,7 @@ abstract class Bundle
         $pluginHandle = Craft::$app->getPlugins()->getPluginHandleByClass(get_class($this));
 
         if ($pluginHandle !== null) {
-            $this->plugin =  Craft::$app->getPlugins()->getPlugin($pluginHandle);
+            $this->plugin = Craft::$app->getPlugins()->getPlugin($pluginHandle);
         }
     }
 

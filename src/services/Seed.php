@@ -174,7 +174,7 @@ class Seed extends Component
     public function getSeedCountByElementType($type)
     {
         $count = SeedRecord::find()->where([
-                'type' => $type
+            'type' => $type
         ])->count();
 
         if ($count) {

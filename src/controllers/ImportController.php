@@ -257,7 +257,7 @@ class ImportController extends Controller
 
             // Make sure we have JSON
             if ($jsonContent->hasErrors()) {
-                $importJobs->addError('json', $file->name . ' ' . $jsonContent->getFirstError('json'));
+                $importJobs->addError('json', $file->name.' '.$jsonContent->getFirstError('json'));
                 SproutBaseImport::error($jsonContent->getFirstError('json'));
                 continue;
             }

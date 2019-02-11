@@ -74,6 +74,7 @@ class Bundles extends Component
 
     /**
      * Make sure the Sprout Import temp folder is created
+     *
      * @return string
      * @throws \yii\base\ErrorException
      * @throws \yii\base\Exception

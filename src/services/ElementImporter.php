@@ -364,7 +364,7 @@ class ElementImporter extends Component
      * @return array|bool
      * @throws \Throwable
      */
-    private function getElementRelationIds(BaseElementImporter $importerClass, array $relatedSettings = array())
+    private function getElementRelationIds(BaseElementImporter $importerClass, array $relatedSettings = [])
     {
         $elementIds = [];
         $newElements = SproutBaseImport::$app->importUtilities->getValueByKey('newElements', $relatedSettings);
@@ -411,10 +411,10 @@ class ElementImporter extends Component
      *
      * @param SettingsImporter $importerClass
      * @param array            $relatedSettings
-     * 
+     *
      * @return int|null
      */
-    private function getSettingRelationIds(BaseSettingsImporter $importerClass, array $relatedSettings = array())
+    private function getSettingRelationIds(BaseSettingsImporter $importerClass, array $relatedSettings = [])
     {
         $params = SproutBaseImport::$app->importUtilities->getValueByKey('params', $relatedSettings);
 

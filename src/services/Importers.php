@@ -307,7 +307,9 @@ class Importers extends Component
             $importerClass = $this->getImporter($row);
 
             // Confirm model for this row of import data is supported
-            if (!$importerClass) continue;
+            if (!$importerClass) {
+                continue;
+            }
 
             if ($importerClass->model instanceof Element) {
                 /**
