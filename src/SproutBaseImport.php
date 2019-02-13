@@ -104,11 +104,6 @@ class SproutBaseImport extends Module
         // Setup Controllers
         if (Craft::$app->getRequest()->getIsConsoleRequest()) {
             $this->controllerNamespace = 'sproutbaseimport\\console\\controllers';
-
-            $this->controllerMap = [
-                'import' => ConsoleImportController::class,
-                'seed' => ConsoleSeedController::class
-            ];
         } else {
             $this->controllerNamespace = 'sproutbaseimport\\controllers';
 
