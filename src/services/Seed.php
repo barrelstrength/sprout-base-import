@@ -200,9 +200,8 @@ class Seed extends Component
 
         if ($seeds) {
             foreach ($seeds as $key => $seed) {
-                $currentTimeZone = Craft::$app->getTimeZone();
+                $dateTime = DateTimeHelper::toDateTime($seed['dateCreated']);
 
-                $dateTime = DateTimeHelper::toDateTime($seed['dateCreated'], true, $currentTimeZone);
                 // Display the user set control panel timezone
                 $seeds[$key]['dateCreated'] = $dateTime->getTimestamp();
             }
