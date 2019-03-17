@@ -188,7 +188,7 @@ class Seed extends Component
      * @return array
      * @throws \Exception
      */
-    public function getSeeds()
+    public function getSeeds(): array
     {
         $query = new Query();
         $seeds = $query

@@ -13,9 +13,14 @@ class WeedController extends Controller
 {
     /**
      * Render the Weed template
+     *
+     * @return Response
+     * @throws \yii\web\ForbiddenHttpException
      */
     public function actionWeedIndex(): Response
     {
+        $this->requirePermission('sproutImport-removeSeeds');
+
         $seeds = SproutBaseImport::$app->seed->getSeeds();
 
         return $this->renderTemplate('sprout-base-import/weed/index', [
@@ -33,6 +38,7 @@ class WeedController extends Controller
     public function actionProcessWeed()
     {
         $this->requirePostRequest();
+        $this->requirePermission('sproutImport-removeSeeds');
 
         $submit = Craft::$app->getRequest()->getParam('submit');
 

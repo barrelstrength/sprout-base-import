@@ -18,12 +18,15 @@ use yii\web\Response;
 class SeedController extends Controller
 {
     /**
-     * @param SeedJob $seedJob
+     * @param SeedJob|null $seedJob
      *
      * @return Response
+     * @throws \yii\web\ForbiddenHttpException
      */
     public function actionSeedIndex(SeedJob $seedJob = null): Response
     {
+        $this->requirePermission('sproutImport-generateSeeds');
+
         if ($seedJob === null) {
             $seedJob = new SeedJob();
         }
@@ -99,10 +102,12 @@ class SeedController extends Controller
      * @return bool|Response
      * @throws BadRequestHttpException
      * @throws \craft\errors\MissingComponentException
+     * @throws \yii\web\ForbiddenHttpException
      */
     public function actionGenerateElementSeeds()
     {
         $this->requirePostRequest();
+        $this->requirePermission('sproutImport-generateSeeds');
 
         $elementType = Craft::$app->getRequest()->getRequiredBodyParam('elementType');
         $quantity = Craft::$app->getRequest()->getBodyParam('quantity');

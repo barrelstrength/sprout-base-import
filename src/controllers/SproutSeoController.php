@@ -4,7 +4,7 @@ namespace barrelstrength\sproutbaseimport\controllers;
 
 use barrelstrength\sproutseo\integrations\sproutimport\importers\elements\Redirect as RedirectImporter;
 use Craft;
-use yii\web\Controller;
+use craft\web\Controller;
 
 /**
  * @todo - move these methods to a better place, they don't belong here.
@@ -15,9 +15,12 @@ class SproutSeoController extends Controller
      * Generate Redirect JSON in Sprout Import Format
      *
      * @throws \craft\errors\MissingComponentException
+     * @throws \yii\web\ForbiddenHttpException
      */
     public function actionGenerateRedirectJson()
     {
+        $this->requireAdmin();
+
         $pastedCSV = Craft::$app->getRequest()->post('pastedCSV');
 
         $importableJson = $this->convertToJson($pastedCSV);
@@ -52,7 +55,7 @@ class SproutSeoController extends Controller
      *
      * @return string
      */
-    private function convertToJson($csv)
+    private function convertToJson($csv): string
     {
         $json = '';
 
@@ -99,7 +102,7 @@ class SproutSeoController extends Controller
      *
      * @return bool
      */
-    private function isHeader($header)
+    private function isHeader($header): bool
     {
         $result = false;
 
