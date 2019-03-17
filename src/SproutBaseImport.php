@@ -8,8 +8,6 @@
 namespace barrelstrength\sproutbaseimport;
 
 use barrelstrength\sproutbaseimport\controllers\ImportController;
-use barrelstrength\sproutbaseimport\console\controllers\ImportController as ConsoleImportController;
-use barrelstrength\sproutbaseimport\console\controllers\SeedController as ConsoleSeedController;
 use barrelstrength\sproutbaseimport\controllers\SeedController;
 use barrelstrength\sproutbaseimport\controllers\SproutSeoController;
 use barrelstrength\sproutbaseimport\controllers\WeedController;
