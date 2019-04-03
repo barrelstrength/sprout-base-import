@@ -345,7 +345,8 @@ class ElementImporter extends Component
                 continue;
             }
 
-            if (count($ids)) {
+            // $ids could be array for elements and an int for setting
+            if (!empty($ids)) {
                 $fields[$fieldHandle] = $ids;
             } else {
                 $fields[$fieldHandle] = [0];
