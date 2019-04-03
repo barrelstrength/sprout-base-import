@@ -59,7 +59,7 @@ class ImportController extends Controller
             }
         }
 
-        if (empty($uploadedFiles)) {
+        if (empty($uploadedFiles) && empty($importDataString)) {
             $importJobs->addError('empty-files',
                 Craft::t("sprout-import", "No files uploaded."));
         }
