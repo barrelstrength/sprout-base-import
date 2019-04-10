@@ -159,7 +159,7 @@ class Seed extends Component
     {
         return Craft::$app->getDb()->createCommand()->delete(
             'sproutimport_seeds',
-            'id=:id',
+            '[[id]]=:id',
             [':id' => $id]
         )->execute();
     }
