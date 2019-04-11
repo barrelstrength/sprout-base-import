@@ -154,7 +154,9 @@ abstract class ElementImporter extends Importer
                 }
             }
 
-            $fields = array_merge($relatedFields, $fields);
+            if (is_array($relatedFields) && count($relatedFields)) {
+                $fields = array_merge($relatedFields, $fields);
+            }
 
             // Required to associate fields on the element
             $model->fieldLayoutId = $this->getFieldLayoutId($model);
