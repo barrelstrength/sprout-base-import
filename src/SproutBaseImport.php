@@ -96,7 +96,7 @@ class SproutBaseImport extends Module
         self::$app = new App();
 
         Craft::setAlias('@sproutbaseimport', $this->getBasePath());
-        Craft::setAlias('@sproutbaseimportlib', dirname(__DIR__, 1).'/lib');
+
         Craft::setAlias('@sproutbaseimporticons', $this->getBasePath().'/web/assets/icons');
 
         // Setup Controllers
