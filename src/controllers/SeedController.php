@@ -8,11 +8,13 @@ use barrelstrength\sproutbaseimport\importers\elements\Category;
 use barrelstrength\sproutbaseimport\importers\elements\Entry;
 use barrelstrength\sproutbaseimport\importers\elements\Tag;
 use barrelstrength\sproutbaseimport\importers\elements\User;
+use craft\errors\MissingComponentException;
 use craft\helpers\DateTimeHelper;
 use craft\web\Controller;
 use Craft;
 use barrelstrength\sproutbaseimport\enums\ImportType;
 use yii\web\BadRequestHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 
 class SeedController extends Controller
@@ -21,7 +23,7 @@ class SeedController extends Controller
      * @param SeedJob|null $seedJob
      *
      * @return Response
-     * @throws \yii\web\ForbiddenHttpException
+     * @throws ForbiddenHttpException
      */
     public function actionSeedIndex(SeedJob $seedJob = null): Response
     {
@@ -101,8 +103,8 @@ class SeedController extends Controller
      *
      * @return bool|Response
      * @throws BadRequestHttpException
-     * @throws \craft\errors\MissingComponentException
-     * @throws \yii\web\ForbiddenHttpException
+     * @throws MissingComponentException
+     * @throws ForbiddenHttpException
      */
     public function actionGenerateElementSeeds()
     {

@@ -17,12 +17,12 @@
                     {{ csrfInput() }}
                     {{ redirectInput("sprout-import/bundles") }}
                     <input type="hidden" name="action"
-                           value="sprout-base-import/import/install-bundle">
+                        value="sprout-base-import/import/install-bundle">
                     <input type="hidden" name="className"
-                           value="{{ bundle.getClassName() }}">
+                        value="{{ bundle.getClassName() }}">
 
                     <button class="btn submit"
-                            type="submit">{{ 'Install Bundle'|t }}</button>
+                        type="submit">{{ 'Install Bundle'|t }}</button>
                 </form>
             </div>
         </div>

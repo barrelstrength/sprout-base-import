@@ -4,10 +4,13 @@ namespace barrelstrength\sproutbaseimport\importers\settings;
 
 use barrelstrength\sproutbaseimport\base\SettingsImporter;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
+use craft\errors\EntryTypeNotFoundException;
 use craft\models\EntryType as EntryTypeModel;
 use craft\records\EntryType as EntryTypeRecord;
 use craft\elements\Entry;
 use Craft;
+use Exception;
+use Throwable;
 
 class EntryType extends SettingsImporter
 {
@@ -32,7 +35,7 @@ class EntryType extends SettingsImporter
      * @param array          $rows
      *
      * @return mixed|void
-     * @throws \Exception
+     * @throws Exception
      */
     public function setModel($entryType, array $rows = [])
     {
@@ -92,8 +95,8 @@ class EntryType extends SettingsImporter
 
     /**
      * @return bool
-     * @throws \Throwable
-     * @throws \craft\errors\EntryTypeNotFoundException
+     * @throws Throwable
+     * @throws EntryTypeNotFoundException
      */
     public function save()
     {

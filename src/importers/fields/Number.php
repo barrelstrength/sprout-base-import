@@ -5,6 +5,9 @@ namespace barrelstrength\sproutbaseimport\importers\fields;
 use barrelstrength\sproutbaseimport\base\FieldImporter;
 use craft\fields\Number as NumberField;
 use Craft;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Number extends FieldImporter
 {
@@ -18,8 +21,9 @@ class Number extends FieldImporter
 
     /**
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \yii\base\Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function getSeedSettingsHtml(): string
     {

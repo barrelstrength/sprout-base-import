@@ -8,6 +8,8 @@ use barrelstrength\sproutbaseimport\models\Weed;
 use craft\helpers\Json;
 use craft\queue\BaseJob;
 use Craft;
+use Exception;
+use Throwable;
 use yii\helpers\VarDumper;
 
 class Import extends BaseJob
@@ -21,7 +23,7 @@ class Import extends BaseJob
      *
      * @param $queue
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function execute($queue)
     {
@@ -40,7 +42,7 @@ class Import extends BaseJob
             $weedModel = new Weed();
             $weedModel->setAttributes($weedModelAttributes, false);
 
-            $this->importData = Json::decode($this->importData, true);
+            $this->importData = Json::decode($this->importData);
 
             SproutBaseImport::$app->importers->save($this->importData, $weedModel);
 
@@ -55,7 +57,7 @@ class Import extends BaseJob
                 SproutBaseImport::error($message);
                 SproutBaseImport::error($errors);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             SproutBaseImport::error('Unable to run Sprout Import job.');
             SproutBaseImport::error($e->getMessage());
         }

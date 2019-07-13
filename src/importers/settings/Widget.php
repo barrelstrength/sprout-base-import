@@ -8,6 +8,7 @@ use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\records\Widget as WidgetRecord;
 use Craft;
 use craft\base\WidgetInterface;
+use Throwable;
 
 class Widget extends SettingsImporter
 {
@@ -37,7 +38,7 @@ class Widget extends SettingsImporter
 
     /**
      * @return WidgetInterface
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function save()
     {

@@ -5,6 +5,7 @@ namespace barrelstrength\sproutbaseimport\importers\fields;
 use barrelstrength\sproutbaseimport\base\FieldImporter;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\fields\MultiSelect as MultiSelectField;
+use Exception;
 
 class MultiSelect extends FieldImporter
 {
@@ -18,7 +19,7 @@ class MultiSelect extends FieldImporter
 
     /**
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

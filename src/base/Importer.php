@@ -9,8 +9,12 @@ namespace barrelstrength\sproutbaseimport\base;
 
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
+use Exception;
 use Faker\Factory;
 use Faker\Generator;
+use InvalidArgumentException;
+use ReflectionClass;
+use ReflectionException;
 use yii\base\Model;
 
 /**
@@ -82,7 +86,7 @@ abstract class Importer
      * @param array $rows
      * @param null  $fakerService
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(array $rows = [], $fakerService = null)
     {
@@ -118,11 +122,11 @@ abstract class Importer
      * - Craft\PlainTextSproutImportFieldImporter
      *
      * @return string
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    final public function getImporterClass()
+    final public function getImporterClass(): string
     {
-        $reflection = new \ReflectionClass($this);
+        $reflection = new ReflectionClass($this);
         $importerClass = $reflection->getShortName();
 
         $this->importerClass = $importerClass;
@@ -213,7 +217,7 @@ abstract class Importer
             $className = $this->getModelName();
 
             if (!class_exists($className)) {
-                throw new \InvalidArgumentException(Craft::t('sprout-base-import', $className.' namespace on getModelName() method not found.'));
+                throw new InvalidArgumentException(Craft::t('sprout-base-import', $className.' namespace on getModelName() method not found.'));
             }
 
             $this->model = new $className();
@@ -225,7 +229,7 @@ abstract class Importer
     /**
      * @return bool
      */
-    public function resolveRelatedSettings()
+    public function resolveRelatedSettings(): bool
     {
         return true;
     }
@@ -236,7 +240,7 @@ abstract class Importer
      *
      * @return bool
      */
-    public function resolveNestedSettings($model, $settings)
+    public function resolveNestedSettings($model, $settings): bool
     {
         return true;
     }
@@ -244,7 +248,7 @@ abstract class Importer
     /**
      * @return string
      */
-    public function getSeedCount()
+    public function getSeedCount(): string
     {
         $name = $this->getModelName();
 

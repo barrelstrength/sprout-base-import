@@ -8,6 +8,7 @@ use craft\base\Component;
 use craft\base\Element;
 use Craft;
 use craft\services\Users;
+use Exception;
 use Faker\Factory;
 
 /**
@@ -26,7 +27,7 @@ class FieldImporter extends Component
      *
      * @return array
      */
-    public function getFieldsWithMockData($fields)
+    public function getFieldsWithMockData($fields): array: array
     {
         $fieldsWithMockData = [];
 
@@ -64,7 +65,7 @@ class FieldImporter extends Component
      * @param            $mockDataSettings
      *
      * @return array|bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockRelations(Element $element, array $attributes = null, $mockDataSettings)
     {
@@ -127,7 +128,7 @@ class FieldImporter extends Component
      *
      * @return array
      */
-    public function getElementGroupIds($sources)
+    public function getElementGroupIds($sources): array
     {
         $ids = [];
 
@@ -181,7 +182,7 @@ class FieldImporter extends Component
      *
      * @return int
      */
-    public function getLimit($limitFromSettings, $defaultLimit = 3)
+    public function getLimit($limitFromSettings, $defaultLimit = 3): int
     {
         if ($limitFromSettings > 0 && $defaultLimit > $limitFromSettings) {
             return $limitFromSettings;
@@ -219,7 +220,7 @@ class FieldImporter extends Component
      *
      * @return array
      */
-    public function getOptionValuesByKeys($keys, $options)
+    public function getOptionValuesByKeys($keys, $options): array
     {
         $values = [];
 
@@ -261,7 +262,7 @@ class FieldImporter extends Component
      *
      * @return string
      */
-    public function getMinutesByIncrement($time, $increment)
+    public function getMinutesByIncrement($time, $increment): string
     {
         $hour = date('g', $time);
         $minutes = date('i', $time);
@@ -282,9 +283,9 @@ class FieldImporter extends Component
      * @param $columns
      *
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
-    public function generateTableColumns($columns)
+    public function generateTableColumns($columns): array
     {
         $values = [];
 
@@ -301,7 +302,7 @@ class FieldImporter extends Component
      * @param $column
      *
      * @return array|int|string
-     * @throws \Exception
+     * @throws Exception
      */
     public function generateTableColumn($column)
     {

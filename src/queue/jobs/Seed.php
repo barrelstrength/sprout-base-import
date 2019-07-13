@@ -5,6 +5,7 @@ namespace barrelstrength\sproutbaseimport\queue\jobs;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\queue\BaseJob;
 use Craft;
+use Throwable;
 
 class Seed extends BaseJob
 {
@@ -18,7 +19,7 @@ class Seed extends BaseJob
      *
      * @param $queue
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function execute($queue)
     {

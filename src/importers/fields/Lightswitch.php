@@ -4,6 +4,7 @@ namespace barrelstrength\sproutbaseimport\importers\fields;
 
 use barrelstrength\sproutbaseimport\base\FieldImporter;
 use craft\fields\Lightswitch as LightswitchField;
+use Exception;
 
 class Lightswitch extends FieldImporter
 {
@@ -19,7 +20,7 @@ class Lightswitch extends FieldImporter
      * Returns a boolean value
      *
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

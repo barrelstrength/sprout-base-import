@@ -4,7 +4,9 @@ namespace barrelstrength\sproutbaseimport\controllers;
 
 use barrelstrength\sproutseo\integrations\sproutimport\importers\elements\Redirect as RedirectImporter;
 use Craft;
+use craft\errors\MissingComponentException;
 use craft\web\Controller;
+use yii\web\ForbiddenHttpException;
 
 /**
  * @todo - move these methods to a better place, they don't belong here.
@@ -14,8 +16,8 @@ class SproutSeoController extends Controller
     /**
      * Generate Redirect JSON in Sprout Import Format
      *
-     * @throws \craft\errors\MissingComponentException
-     * @throws \yii\web\ForbiddenHttpException
+     * @throws MissingComponentException
+     * @throws ForbiddenHttpException
      */
     public function actionGenerateRedirectJson()
     {
@@ -36,16 +38,16 @@ class SproutSeoController extends Controller
             return Craft::$app->getUrlManager()->setRouteParams([
                 'params' => $params
             ]);
-        } else {
-            Craft::$app->getSession()->setError(Craft::t('sprout-import', 'Unable to convert data.'));
-
-            Craft::$app->urlManager->setRouteParams([
-                'errors' => [
-                    0 => Craft::t('sprout-import', 'CSV data not provided or using incorrect format.')
-                ],
-                'pastedCSV' => $pastedCSV
-            ]);
         }
+
+        Craft::$app->getSession()->setError(Craft::t('sprout-import', 'Unable to convert data.'));
+
+        Craft::$app->urlManager->setRouteParams([
+            'errors' => [
+                0 => Craft::t('sprout-import', 'CSV data not provided or using incorrect format.')
+            ],
+            'pastedCSV' => $pastedCSV
+        ]);
     }
 
     /**

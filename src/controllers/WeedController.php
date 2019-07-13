@@ -4,7 +4,10 @@ namespace barrelstrength\sproutbaseimport\controllers;
 
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
+use craft\errors\MissingComponentException;
 use craft\web\Controller;
+use Throwable;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\db\Exception;
 use yii\web\BadRequestHttpException;
@@ -15,7 +18,8 @@ class WeedController extends Controller
      * Render the Weed template
      *
      * @return Response
-     * @throws \yii\web\ForbiddenHttpException
+     * @throws ForbiddenHttpException
+     * @throws \Exception
      */
     public function actionWeedIndex(): Response
     {
@@ -32,8 +36,8 @@ class WeedController extends Controller
      * @return null|Response
      * @throws BadRequestHttpException
      * @throws Exception
-     * @throws \Throwable
-     * @throws \craft\errors\MissingComponentException
+     * @throws Throwable
+     * @throws MissingComponentException
      */
     public function actionProcessWeed()
     {

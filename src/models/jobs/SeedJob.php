@@ -4,6 +4,7 @@ namespace barrelstrength\sproutbaseimport\models\jobs;
 
 use craft\base\Model;
 use barrelstrength\sproutbaseimport\base\ElementImporter;
+use DateTime;
 
 class SeedJob extends Model
 {
@@ -43,7 +44,7 @@ class SeedJob extends Model
     public $details;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     public $dateCreated;
 

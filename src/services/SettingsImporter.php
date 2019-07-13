@@ -6,6 +6,8 @@ use barrelstrength\sproutbaseimport\base\SettingsImporter as BaseSettingsImporte
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\base\Component;
 use Craft;
+use craft\base\Model;
+use Exception;
 
 class SettingsImporter extends Component
 {
@@ -13,8 +15,8 @@ class SettingsImporter extends Component
      * @param                           $rows
      * @param BaseSettingsImporter|null $importerClass
      *
-     * @return bool|\craft\base\Model|mixed|null
-     * @throws \Exception
+     * @return bool|Model|mixed|null
+     * @throws Exception
      */
     public function saveSetting($rows, BaseSettingsImporter $importerClass = null)
     {
@@ -41,7 +43,7 @@ class SettingsImporter extends Component
             }
 
             return false;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             $message = Craft::t('sprout-base-import', 'Unable to import Settings.');
 

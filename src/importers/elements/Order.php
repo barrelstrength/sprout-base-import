@@ -14,6 +14,8 @@ use craft\commerce\Plugin;
 use craft\commerce\records\Purchasable;
 use craft\commerce\records\Transaction;
 use craft\commerce\services\LineItems;
+use craft\errors\ElementNotFoundException;
+use Throwable;
 use yii\base\Exception;
 
 class Order extends ElementImporter
@@ -42,9 +44,9 @@ class Order extends ElementImporter
      * @param array $settings
      *
      * @return bool|mixed|void
-     * @throws \Throwable
-     * @throws \craft\errors\ElementNotFoundException
-     * @throws \yii\base\Exception
+     * @throws Throwable
+     * @throws ElementNotFoundException
+     * @throws Exception
      */
     public function setModel($model, array $settings = [])
     {
@@ -220,7 +222,7 @@ class Order extends ElementImporter
 
     /**
      * @return bool|void
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function save()
     {
@@ -252,24 +254,22 @@ class Order extends ElementImporter
                 try {
                     Plugin::getInstance()->getPayments()->processPayment($order, $paymentForm, $redirect, $transaction);
 
-                    if (!empty($settings['transactions'])) {
-                        if ($transaction) {
-                            $transactionRecord = Transaction::findOne($transaction->id);
+                    if (!empty($settings['transactions']) && $transaction) {
+                        $transactionRecord = Transaction::findOne($transaction->id);
 
-                            if ($status = $settings['transactions']['status']) {
-                                $transactionRecord->status = $status;
-                            }
-
-                            if ($reference = $settings['transactions']['reference']) {
-                                $transactionRecord->reference = $reference;
-                            }
-
-                            if ($response = $settings['transactions']['response']) {
-                                $transactionRecord->response = $response;
-                            }
-
-                            $transactionRecord->save();
+                        if ($status = $settings['transactions']['status']) {
+                            $transactionRecord->status = $status;
                         }
+
+                        if ($reference = $settings['transactions']['reference']) {
+                            $transactionRecord->reference = $reference;
+                        }
+
+                        if ($response = $settings['transactions']['response']) {
+                            $transactionRecord->response = $response;
+                        }
+
+                        $transactionRecord->save();
                     }
                 } catch (PaymentException $exception) {
                     $utilities->addError('invalid-payment', $exception->getMessage());
@@ -285,9 +285,9 @@ class Order extends ElementImporter
      * @param $id
      *
      * @return bool
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public function deleteById($id)
+    public function deleteById($id): bool
     {
         return Craft::$app->elements->deleteElementById($id);
     }

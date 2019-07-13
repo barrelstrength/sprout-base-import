@@ -7,6 +7,10 @@ use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\elements\Asset;
 use Craft;
 use craft\fields\Assets as AssetsField;
+use Exception;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Assets extends FieldImporter
 {
@@ -20,8 +24,9 @@ class Assets extends FieldImporter
 
     /**
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \yii\base\Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function getSeedSettingsHtml(): string
     {
@@ -32,7 +37,7 @@ class Assets extends FieldImporter
 
     /**
      * @return array|bool|mixed|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

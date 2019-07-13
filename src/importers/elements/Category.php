@@ -6,7 +6,11 @@ use barrelstrength\sproutbaseimport\SproutBaseImport;
 use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
 use Craft;
 use barrelstrength\sproutbaseimport\base\ElementImporter;
+use craft\base\FieldInterface;
 use craft\elements\Category as CategoryElement;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Category extends ElementImporter
 {
@@ -32,8 +36,9 @@ class Category extends ElementImporter
      * @param SeedJob $seedJob
      *
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \yii\base\Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function getSeedSettingsHtml(SeedJob $seedJob): string
     {
@@ -95,13 +100,13 @@ class Category extends ElementImporter
      *
      * @return array
      */
-    protected function generateCategory($categoryGroup)
+    protected function generateCategory($categoryGroup): array
     {
         $faker = $this->fakerService;
         $name = $faker->word;
 
         $data = [];
-        $data['@model'] = Category::class;
+        $data['@model'] = __CLASS__;
         $data['attributes']['groupId'] = $categoryGroup;
         $data['content']['title'] = $name;
 
@@ -117,7 +122,7 @@ class Category extends ElementImporter
     /**
      * Returns a Field Layout
      *
-     * @return array|\craft\base\FieldInterface[]
+     * @return array|FieldInterface[]|null
      */
     private function getFieldLayoutsByGroupId()
     {

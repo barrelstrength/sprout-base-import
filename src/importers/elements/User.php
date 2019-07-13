@@ -7,6 +7,9 @@ use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 use barrelstrength\sproutbaseimport\base\ElementImporter;
 use craft\elements\User as UserElement;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class User extends ElementImporter
 {
@@ -30,8 +33,9 @@ class User extends ElementImporter
      * @param SeedJob $seedJob
      *
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \yii\base\Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function getSeedSettingsHtml(SeedJob $seedJob): string
     {

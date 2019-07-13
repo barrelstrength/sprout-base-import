@@ -32,7 +32,7 @@ class Json extends Model
     public function validateJson($string)
     {
         // Run our string through json_decode to learn if we have errors
-        json_decode($string);
+        json_decode($string, false);
 
         switch (json_last_error()) {
             // No errors. Add our JSON to the model.

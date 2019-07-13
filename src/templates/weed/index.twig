@@ -35,14 +35,14 @@
                         <form method="post" accept-charset="UTF-8">
                             {{ csrfInput() }}
                             <input type="hidden" name="action"
-                                   value="sprout-base-import/weed/process-weed">
+                                value="sprout-base-import/weed/process-weed">
                             {{ redirectInput("sprout-import/weed") }}
                             <input type="hidden" name="dateCreated"
-                                   value="{{ seed['dateCreated']|date('Y-m-d h:i:s') }}">
+                                value="{{ seed['dateCreated']|date('Y-m-d h:i:s') }}">
                             <input class="btn small" name="submit"
-                                   type="submit" value="Weed">
+                                type="submit" value="Weed">
                             <input class="btn small" name="submit"
-                                   type="submit" value="Keep">
+                                type="submit" value="Keep">
                         </form>
                     </td>
                 </tr>
@@ -54,13 +54,13 @@
             <form method="post" accept-charset="UTF-8">
                 {{ csrfInput() }}
                 <input type="hidden" name="action"
-                       value="sprout-base-import/weed/process-weed">
+                    value="sprout-base-import/weed/process-weed">
                 {{ redirectInput("sprout-import/weed") }}
                 <input type="hidden" name="dateCreated" value="*">
                 <input class="btn submit" name="submit"
-                       type="submit" value="Weed All">
+                    type="submit" value="Weed All">
                 <input class="btn" name="submit" type="submit"
-                       value="Keep All">
+                    value="Keep All">
             </form>
         </div>
 

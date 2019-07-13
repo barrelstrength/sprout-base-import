@@ -8,6 +8,8 @@ use craft\base\Component;
 use craft\events\RegisterComponentTypesEvent;
 use Craft;
 use craft\helpers\FileHelper;
+use yii\base\ErrorException;
+use yii\base\Exception;
 
 /**
  *
@@ -76,8 +78,8 @@ class Bundles extends Component
      * Make sure the Sprout Import temp folder is created
      *
      * @return string
-     * @throws \yii\base\ErrorException
-     * @throws \yii\base\Exception
+     * @throws ErrorException
+     * @throws Exception
      */
     public function createTempFolder(): string
     {

@@ -13,7 +13,10 @@ use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
 use Craft;
 use craft\base\Element;
 use craft\elements\db\ElementQuery;
+use craft\errors\DeprecationException;
 use craft\helpers\DateTimeHelper;
+use Exception;
+use Throwable;
 
 /**
  * Class ElementImporter
@@ -64,7 +67,7 @@ abstract class ElementImporter extends Importer
      * @param array $settings
      *
      * @return bool|mixed
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function setModel($model, array $settings = [])
     {
@@ -109,10 +112,10 @@ abstract class ElementImporter extends Importer
                 $criteriaAttributes = $elementQuery->criteriaAttributes();
 
                 foreach ($criteriaAttributes as $attribute) {
-                    if (property_exists($model, $attribute) && !empty($model->{$attribute})) {
-                        if (isset($defaults[$attribute])) {
-                            $model->{$attribute} = $defaults[$attribute];
-                        }
+                    if (property_exists($model, $attribute) &&
+                        !empty($model->{$attribute}) &&
+                        isset($defaults[$attribute])) {
+                        $model->{$attribute} = $defaults[$attribute];
                     }
                 }
             }
@@ -181,9 +184,9 @@ abstract class ElementImporter extends Importer
      * @param $id
      *
      * @return bool
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public function deleteById($id)
+    public function deleteById($id): bool
     {
         return Craft::$app->getElements()->deleteElementById($id);
     }
@@ -191,10 +194,11 @@ abstract class ElementImporter extends Importer
     /**
      * Determine if we have any elements we should handle before handling the current Element
      *
-     * @param $element Element
+     * @param $element
      * @param $settings
      *
-     * @return bool
+     * @return array|\barrelstrength\sproutbaseimport\services\ElementImporter|\barrelstrength\sproutbaseimport\services\ElementImporter[]|bool|Element|null
+     * @throws DeprecationException
      */
     protected function getExistingElement($element, $settings)
     {
@@ -252,7 +256,7 @@ abstract class ElementImporter extends Importer
 
     /**
      * @return bool
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function save()
     {
@@ -264,7 +268,7 @@ abstract class ElementImporter extends Importer
             $this->afterSaveElement();
 
             return $element;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             SproutBaseImport::error($e->getMessage());
 
             $utilities->addError('invalid-entry-model', $e->getMessage());

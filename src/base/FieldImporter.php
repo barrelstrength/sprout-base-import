@@ -65,12 +65,12 @@ abstract class FieldImporter extends Importer
      *
      * @return mixed
      */
-    public abstract function getMockData();
+    abstract public function getMockData();
 
     /**
      * @return string
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): string
     {
         return '';
     }

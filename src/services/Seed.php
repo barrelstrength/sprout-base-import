@@ -14,6 +14,8 @@ use craft\db\Query;
 use barrelstrength\sproutbaseimport\models\Seed as SeedModel;
 use barrelstrength\sproutbaseimport\records\Seed as SeedRecord;
 use craft\helpers\DateTimeHelper;
+use Exception;
+use Throwable;
 
 /**
  *
@@ -57,7 +59,7 @@ class Seed extends Component
             ]));
 
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             SproutBaseImport::error($e->getMessage());
         }
 
@@ -106,7 +108,7 @@ class Seed extends Component
      * @param bool  $isKeep
      *
      * @return bool
-     * @throws \Throwable
+     * @throws Throwable
      * @throws \yii\db\Exception
      */
     public function weed(array $seeds = [], $isKeep = false)
@@ -130,7 +132,7 @@ class Seed extends Component
                     }
 
                     SproutBaseImport::$app->seed->deleteSeedById($seed['id']);
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     SproutBaseImport::error($e->getMessage());
 
                     return false;
@@ -179,14 +181,14 @@ class Seed extends Component
 
         if ($count) {
             return $count;
-        } else {
-            return '0';
         }
+
+        return '0';
     }
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSeeds(): array
     {
@@ -217,7 +219,7 @@ class Seed extends Component
      *
      * @return array
      */
-    public function getSeedsByDateCreated($date)
+    public function getSeedsByDateCreated($date): array
     {
         $query = new Query();
 
@@ -234,7 +236,7 @@ class Seed extends Component
      * @param array $seedJob
      *
      * @return bool
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function runSeed(array $seedJob)
     {
@@ -279,7 +281,7 @@ class Seed extends Component
             }
 
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             Craft::error('Unable to save Seed data. Rolling back.', 'sprout-import');
             Craft::error($e->getMessage());

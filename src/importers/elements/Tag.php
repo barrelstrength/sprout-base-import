@@ -6,7 +6,11 @@ use barrelstrength\sproutbaseimport\base\ElementImporter;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use barrelstrength\sproutbaseimport\models\jobs\SeedJob;
 use Craft;
+use craft\base\FieldInterface;
 use craft\elements\Tag as TagElement;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Tag extends ElementImporter
 {
@@ -35,8 +39,9 @@ class Tag extends ElementImporter
      * @param SeedJob $seedJob
      *
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \yii\base\Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function getSeedSettingsHtml(SeedJob $seedJob): string
     {
@@ -117,7 +122,7 @@ class Tag extends ElementImporter
     /**
      * Returns a Field Layout
      *
-     * @return array|\craft\base\FieldInterface[]
+     * @return array|FieldInterface[]
      */
     private function getFieldLayoutsByGroupId()
     {

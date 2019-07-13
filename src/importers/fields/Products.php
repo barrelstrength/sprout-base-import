@@ -7,6 +7,7 @@ use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
 use craft\commerce\elements\Product;
 use craft\commerce\fields\Products as ProductsField;
+use Exception;
 
 class Products extends FieldImporter
 {
@@ -20,7 +21,7 @@ class Products extends FieldImporter
 
     /**
      * @return array|bool|mixed|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

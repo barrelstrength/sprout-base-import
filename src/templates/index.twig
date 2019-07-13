@@ -30,7 +30,7 @@
     <form method="post" accept-charset="utf-8" enctype="multipart/form-data">
         {{ csrfInput() }}
         <input type="hidden" name="action"
-               value="sprout-base-import/import/run-import">
+            value="sprout-base-import/import/run-import">
         {{ redirectInput("sprout-import") }}
 
         {{ forms.textareaField({
@@ -63,7 +63,7 @@
         }) }}
 
         <button class="btn submit"
-                type="submit">{{ 'Run Import'|t('sprout-base-import') }}</button>
+            type="submit">{{ 'Run Import'|t('sprout-base-import') }}</button>
 
     </form>
 
@@ -118,7 +118,7 @@
             {% if sproutFormsIsInstalled %}
                 <p class="light">
                     <a href="http://sprout.barrelstrengthdesign.com/craft-plugins/forms"
-                       target="_blank">Sprout Forms</a> &ndash;
+                        target="_blank">Sprout Forms</a> &ndash;
                     Import Contact Forms, Landing Page Forms, Feedback
                     Forms, Surveys, and more. Generate fake Form Entries
                     to test your workflows.</p>
@@ -127,7 +127,7 @@
             {% if sproutEmailIsInstalled %}
                 <p class="light">
                     <a href="http://sprout.barrelstrengthdesign.com/craft-plugins/email"
-                       target="_blank">Sprout Email</a> &ndash;
+                        target="_blank">Sprout Email</a> &ndash;
                     Import Email Templates to use for Newsletters,
                     Marketing, Announcements, Notifications, and more.
                 </p>
@@ -144,7 +144,7 @@
             {% if sproutFieldsIsInstalled %}
                 <p class="light">
                     <a href="http://sprout.barrelstrengthdesign.com/craft-plugins/fields"
-                       target="_blank">Sprout Fields</a> &ndash;
+                        target="_blank">Sprout Fields</a> &ndash;
                     Import content and generate fake data with custom
                     fields for Email Addresses, Phone Numbers, and
                     Links.

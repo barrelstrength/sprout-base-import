@@ -5,8 +5,10 @@ namespace barrelstrength\sproutbaseimport\importers\settings;
 use barrelstrength\sproutbaseimport\base\SettingsImporter;
 use barrelstrength\sproutbaseimport\models\importers\Field as FieldModel;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
+use craft\base\FieldInterface;
 use craft\records\Field as FieldRecord;
 use Craft;
+use Throwable;
 
 class Field extends SettingsImporter
 {
@@ -29,7 +31,7 @@ class Field extends SettingsImporter
     /**
      * @param $settings
      *
-     * @return \craft\base\FieldInterface
+     * @return FieldInterface
      */
     private function getFieldType($settings)
     {
@@ -44,7 +46,7 @@ class Field extends SettingsImporter
     /**
      * @param null $handle
      *
-     * @return \craft\base\FieldInterface|null
+     * @return FieldInterface|null
      */
     public function getModelByHandle($handle = null)
     {
@@ -60,8 +62,8 @@ class Field extends SettingsImporter
     }
 
     /**
-     * @return bool|\craft\base\FieldInterface|mixed
-     * @throws \Throwable
+     * @return bool|FieldInterface|mixed
+     * @throws Throwable
      */
     public function save()
     {

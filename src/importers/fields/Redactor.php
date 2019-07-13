@@ -4,6 +4,7 @@ namespace barrelstrength\sproutbaseimport\importers\fields;
 
 use barrelstrength\sproutbaseimport\base\FieldImporter;
 use craft\redactor\Field;
+use Exception;
 
 class Redactor extends FieldImporter
 {
@@ -17,7 +18,7 @@ class Redactor extends FieldImporter
 
     /**
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

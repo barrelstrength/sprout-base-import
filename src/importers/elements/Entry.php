@@ -8,6 +8,10 @@ use Craft;
 use barrelstrength\sproutbaseimport\base\ElementImporter;
 use craft\base\Field;
 use craft\elements\Entry as EntryElement;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use yii\base\InvalidConfigException;
 
 class Entry extends ElementImporter
 {
@@ -33,9 +37,9 @@ class Entry extends ElementImporter
      * @param SeedJob $seedJob
      *
      * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function getSeedSettingsHtml(SeedJob $seedJob): string
     {
@@ -119,10 +123,10 @@ class Entry extends ElementImporter
      */
     public function generateEntry(array $entryParams = [])
     {
-        $fakerDate = $this->fakerService->dateTimeThisYear('now');
+        $fakerDate = $this->fakerService->dateTimeThisYear();
 
         $data = [];
-        $data['@model'] = Entry::class;
+        $data['@model'] = __CLASS__;
         $data['attributes']['sectionId'] = $entryParams['sectionId'];
         $data['attributes']['typeId'] = $entryParams['entryTypeId'];
 
@@ -183,6 +187,7 @@ class Entry extends ElementImporter
 
                 $layouts = Craft::$app->getFields()->getFieldsByLayoutId($fieldLayoutId);
                 // Always use array merge because $layouts variable returns an array
+                /** @noinspection SlowArrayOperationsInLoopInspection */
                 $fieldLayouts = array_merge($fieldLayouts, $layouts);
             }
         }
@@ -194,7 +199,7 @@ class Entry extends ElementImporter
      * @param $entry
      *
      * @return int|null
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function getFieldLayoutId($entry)
     {
@@ -238,7 +243,7 @@ class Entry extends ElementImporter
     }
 
     /**
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function afterSaveElement()
     {

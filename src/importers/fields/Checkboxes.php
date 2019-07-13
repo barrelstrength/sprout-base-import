@@ -5,6 +5,7 @@ namespace barrelstrength\sproutbaseimport\importers\fields;
 use barrelstrength\sproutbaseimport\base\FieldImporter;
 use craft\fields\Checkboxes as CheckboxesField;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
+use Exception;
 
 class Checkboxes extends FieldImporter
 {
@@ -18,7 +19,7 @@ class Checkboxes extends FieldImporter
 
     /**
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

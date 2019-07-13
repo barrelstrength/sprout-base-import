@@ -5,10 +5,12 @@ namespace barrelstrength\sproutbaseimport\importers\settings;
 use barrelstrength\sproutbaseimport\base\SettingsImporter;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
+use craft\errors\SectionNotFoundException;
 use craft\models\Section as SectionModel;
 use craft\models\Section_SiteSettings;
 use craft\models\Site;
 use craft\records\Section as SectionRecord;
+use Throwable;
 
 class Section extends SettingsImporter
 {
@@ -53,8 +55,8 @@ class Section extends SettingsImporter
 
     /**
      * @return bool
-     * @throws \Throwable
-     * @throws \craft\errors\SectionNotFoundException
+     * @throws Throwable
+     * @throws SectionNotFoundException
      */
     public function save()
     {
@@ -67,7 +69,7 @@ class Section extends SettingsImporter
      * @param $id
      *
      * @return bool|mixed
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function deleteById($id)
     {
@@ -144,29 +146,29 @@ class Section extends SettingsImporter
     }
 
     /**
-     * @param SectionModel $section
+     * @param SectionModel $model
      * @param              $settings
      *
      * @return bool
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public function resolveNestedSettings($section, $settings)
+    public function resolveNestedSettings($model, $settings): bool
     {
         // Check to see if we have any Entry Types we should also save
         if (!isset($settings['entryTypes']) OR empty($settings['entryTypes'])) {
             return true;
         }
 
-        if ($section->id === null) {
+        if ($model->id === null) {
             return true;
         }
 
-        $sectionId = $section->id;
+        $sectionId = $model->id;
 
         // If we have a new section, we may want to update the Default Entry Type
         // that Craft creates when a section is created
         if ($this->isNewSection) {
-            $entryTypes = $section->getEntryTypes();
+            $entryTypes = $model->getEntryTypes();
 
             $firstEntryType = $entryTypes[0];
             $firstEntryTypeFields = $firstEntryType->getFieldLayout()->getFields();

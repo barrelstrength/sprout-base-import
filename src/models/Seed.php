@@ -4,6 +4,7 @@ namespace barrelstrength\sproutbaseimport\models;
 
 use craft\base\Model;
 use craft\helpers\DateTimeHelper;
+use DateTime;
 
 class Seed extends Model
 {
@@ -38,12 +39,12 @@ class Seed extends Model
     public $enabled = false;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     public $dateCreated;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     public $dateUpdated;
 

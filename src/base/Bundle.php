@@ -9,6 +9,7 @@ namespace barrelstrength\sproutbaseimport\base;
 
 use Craft;
 use craft\base\Plugin;
+use yii\base\Exception;
 
 /**
  * Class Theme
@@ -102,7 +103,7 @@ abstract class Bundle
      * The folder where this them will place it's template files
      *
      * @return string
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function getDestinationTemplateFolder(): string
     {

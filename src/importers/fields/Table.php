@@ -5,6 +5,7 @@ namespace barrelstrength\sproutbaseimport\importers\fields;
 use barrelstrength\sproutbaseimport\base\FieldImporter;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\fields\Table as TableField;
+use Exception;
 
 class Table extends FieldImporter
 {
@@ -18,7 +19,7 @@ class Table extends FieldImporter
 
     /**
      * @return array|mixed|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

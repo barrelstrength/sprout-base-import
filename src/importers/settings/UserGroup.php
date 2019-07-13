@@ -4,6 +4,7 @@ namespace barrelstrength\sproutbaseimport\importers\settings;
 
 use barrelstrength\sproutbaseimport\base\SettingsImporter;
 use Craft;
+use craft\errors\WrongEditionException;
 use craft\models\UserGroup as UserGroupModel;
 use craft\records\UserGroup as UserGroupRecord;
 
@@ -42,7 +43,7 @@ class UserGroup extends SettingsImporter
      * @param $id
      *
      * @return bool|mixed
-     * @throws \craft\errors\WrongEditionException
+     * @throws WrongEditionException
      */
     public function deleteById($id)
     {
@@ -51,7 +52,7 @@ class UserGroup extends SettingsImporter
 
     /**
      * @return bool
-     * @throws \craft\errors\WrongEditionException
+     * @throws WrongEditionException
      */
     public function save()
     {

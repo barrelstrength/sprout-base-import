@@ -6,6 +6,8 @@ use barrelstrength\sproutbaseimport\base\ElementImporter;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\commerce\elements\Product as ProductElement;
 use craft\commerce\records\Purchasable;
+use Throwable;
+use yii\base\Model;
 
 class Product extends ElementImporter
 {
@@ -26,11 +28,11 @@ class Product extends ElementImporter
     }
 
     /**
-     * @param \yii\base\Model $model
+     * @param Model $model
      * @param array           $settings
      *
      * @return bool|mixed|void
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function setModel($model, array $settings = [])
     {

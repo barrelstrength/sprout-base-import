@@ -7,6 +7,8 @@
 
 namespace barrelstrength\sproutbaseimport\base;
 
+use craft\base\Model;
+use Exception;
 use yii\db\BaseActiveRecord;
 
 abstract class SettingsImporter extends Importer
@@ -20,8 +22,8 @@ abstract class SettingsImporter extends Importer
     }
 
     /**
-     * @return \craft\base\Model|mixed|null
-     * @throws \Exception
+     * @return Model|mixed|null
+     * @throws Exception
      */
     public function getModel()
     {

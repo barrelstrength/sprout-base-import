@@ -34,7 +34,7 @@
         {{ csrfInput() }}
         {{ redirectInput('sprout-import/seed') }}
         <input type="hidden" name="action"
-               value="sprout-base-import/seed/generate-element-seeds">
+            value="sprout-base-import/seed/generate-element-seeds">
 
         {{ forms.textField({
             label: 'How many items to seed?'|t('sprout-base-import'),
@@ -61,7 +61,7 @@
         {# Output settings for each of our Importers #}
         {% for key, importer in importers %}
             <div class="field element-options {{ key|replace({'\\': "-"}) }}"
-                 style="display: none">
+                style="display: none">
                 {% namespace 'settings[' ~ key ~ ']' %}
                     {{ importer.getSeedSettingsHtml(seedJob)|raw }}
                 {% endnamespace %}

@@ -12,6 +12,10 @@ use craft\base\Model;
 use barrelstrength\sproutbaseimport\base\ElementImporter as BaseElementImporter;
 use barrelstrength\sproutbaseimport\base\SettingsImporter as BaseSettingsImporter;
 use barrelstrength\sproutbaseimport\base\SettingsImporter;
+use craft\errors\DeprecationException;
+use Exception;
+use ReflectionException;
+use Throwable;
 
 /**
  *
@@ -66,8 +70,8 @@ class ElementImporter extends Component
      * @param bool                $seed
      *
      * @return bool|mixed
-     * @throws \ReflectionException
-     * @throws \Throwable
+     * @throws ReflectionException
+     * @throws Throwable
      */
     public function saveElement($rows, BaseElementImporter $importerClass, $seed = false)
     {
@@ -156,7 +160,7 @@ class ElementImporter extends Component
                     $this->savedElement = $model;
 
                     $saved = true;
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     $message = Craft::t('sprout-base-import', "Error when saving Element. \n ");
                     $message .= $e->getMessage();
 
@@ -175,7 +179,7 @@ class ElementImporter extends Component
                 } else {
                     $this->unsavedElements[] = $model->title;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->unsavedElements[] = [
                     'title' => $model->title,
                     'error' => $e->getMessage()
@@ -229,6 +233,7 @@ class ElementImporter extends Component
      * @param bool $all
      *
      * @return array|bool|Element|null|static|static[]
+     * @throws DeprecationException
      */
     public function getElementFromImportSettings($elementTypeName, $updateElementSettings, $all = false)
     {
@@ -291,7 +296,7 @@ class ElementImporter extends Component
             }
 
             return $element;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             SproutBaseImport::error($e->getMessage());
 
@@ -306,7 +311,7 @@ class ElementImporter extends Component
      * @param array      $fields
      *
      * @return array|false
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function resolveRelationships(array $related = null, array $fields)
     {
@@ -363,7 +368,7 @@ class ElementImporter extends Component
      * @param array               $relatedSettings
      *
      * @return array|bool
-     * @throws \Throwable
+     * @throws Throwable
      */
     private function getElementRelationIds(BaseElementImporter $importerClass, array $relatedSettings = [])
     {
@@ -394,7 +399,7 @@ class ElementImporter extends Component
                         $elementIds[] = $this->savedElement->id;
                     }
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $message['errorMessage'] = $e->getMessage();
                 $message['errorObject'] = $e;
 
@@ -414,6 +419,7 @@ class ElementImporter extends Component
      * @param array            $relatedSettings
      *
      * @return int|null
+     * @throws DeprecationException
      */
     private function getSettingRelationIds(BaseSettingsImporter $importerClass, array $relatedSettings = [])
     {
@@ -453,7 +459,7 @@ class ElementImporter extends Component
      *
      * @return array
      */
-    public function getSavedResults($returnSavedElementIds = false)
+    public function getSavedResults($returnSavedElementIds = false): array
     {
         $result = [
             'saved' => count($this->savedElements),
@@ -471,9 +477,9 @@ class ElementImporter extends Component
      * @param $fields
      *
      * @return bool
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public function resolveMatrixRelationships($fields)
+    public function resolveMatrixRelationships($fields): bool
     {
         foreach ($fields as $field => $blocks) {
             if (is_array($blocks) && count($blocks)) {
@@ -506,7 +512,7 @@ class ElementImporter extends Component
     /**
      * @return array
      */
-    private function getElementDataKeys()
+    private function getElementDataKeys(): array
     {
         return [
             '@model', 'attributes', 'content', 'settings'

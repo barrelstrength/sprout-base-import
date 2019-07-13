@@ -5,6 +5,10 @@ namespace barrelstrength\sproutbaseimport\importers\fields;
 use barrelstrength\sproutbaseimport\base\FieldImporter;
 use craft\fields\PlainText as PlainTextField;
 use Craft;
+use Exception;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class PlainText extends FieldImporter
 {
@@ -18,8 +22,9 @@ class PlainText extends FieldImporter
 
     /**
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \yii\base\Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function getSeedSettingsHtml(): string
     {
@@ -30,7 +35,7 @@ class PlainText extends FieldImporter
 
     /**
      * @return mixed|string
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

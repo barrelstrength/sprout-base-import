@@ -7,6 +7,10 @@ use barrelstrength\sproutbaseimport\SproutBaseImport;
 use craft\elements\User;
 use craft\fields\Users as UsersField;
 use Craft;
+use Exception;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Users extends FieldImporter
 {
@@ -20,8 +24,9 @@ class Users extends FieldImporter
 
     /**
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \yii\base\Exception
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function getSeedSettingsHtml(): string
     {
@@ -32,7 +37,7 @@ class Users extends FieldImporter
 
     /**
      * @return array|bool|mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMockData()
     {

@@ -9,11 +9,13 @@ use barrelstrength\sproutbaseimport\models\Seed;
 use barrelstrength\sproutbaseimport\queue\jobs\Import;
 use barrelstrength\sproutbaseimport\SproutBaseImport;
 use Craft;
+use craft\errors\MissingComponentException;
 use craft\helpers\FileHelper;
 use craft\web\Controller;
 use barrelstrength\sproutbaseimport\enums\ImportType;
 use craft\web\UploadedFile;
 use yii\base\ErrorException;
+use yii\base\Exception;
 use yii\web\BadRequestHttpException;
 
 class ImportController extends Controller
@@ -21,8 +23,8 @@ class ImportController extends Controller
     /**
      * @throws BadRequestHttpException
      * @throws ErrorException
-     * @throws \craft\errors\MissingComponentException
-     * @throws \yii\base\Exception
+     * @throws MissingComponentException
+     * @throws Exception
      */
     public function actionRunImport()
     {
@@ -76,7 +78,7 @@ class ImportController extends Controller
 
     /**
      * @throws BadRequestHttpException
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function actionInstallBundle()
     {
@@ -225,7 +227,7 @@ class ImportController extends Controller
      * @param            $seed
      *
      * @throws ErrorException
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     protected function prepareUploadedFileImportJobs(ImportJobs $importJobs, $uploadedFiles, $seed)
     {

@@ -37,9 +37,12 @@ use barrelstrength\sproutbaseimport\models\Seed as SeedModel;
 use barrelstrength\sproutbaseimport\models\Weed;
 use craft\base\Component;
 use craft\base\Element;
+use craft\base\Model;
 use craft\events\RegisterComponentTypesEvent;
 use Craft;
 use craft\helpers\Json;
+use ReflectionException;
+use Throwable;
 
 /**
  *
@@ -279,9 +282,9 @@ class Importers extends Component
      * @param           $importData
      * @param Weed|null $weedModel
      *
-     * @return bool|\craft\base\Model|mixed|null
-     * @throws \ReflectionException
-     * @throws \Throwable
+     * @return bool|Model|mixed|null
+     * @throws ReflectionException
+     * @throws Throwable
      */
     public function save($importData, Weed $weedModel = null)
     {
@@ -297,7 +300,7 @@ class Importers extends Component
             // When seeding entries, we have an array
             $rows = $importData;
         } else {
-            $rows = Json::decode($importData, true);
+            $rows = Json::decode($importData);
         }
 
         foreach ($rows as $row) {
