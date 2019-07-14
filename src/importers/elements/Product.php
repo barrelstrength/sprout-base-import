@@ -29,7 +29,7 @@ class Product extends ElementImporter
 
     /**
      * @param Model $model
-     * @param array           $settings
+     * @param array $settings
      *
      * @return bool|mixed|void
      * @throws Throwable

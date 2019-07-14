@@ -9,7 +9,6 @@ namespace barrelstrength\sproutbaseimport\services;
 
 use craft\base\Component;
 
-
 class App extends Component
 {
     /**
