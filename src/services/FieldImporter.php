@@ -12,7 +12,7 @@ use Exception;
 use Faker\Factory;
 
 /**
- * Class SproutImport_MockDataService
+ * Class FieldImporter
  *
  * Various methods to help with importing mock seed data into fields and elements
  *
@@ -27,7 +27,7 @@ class FieldImporter extends Component
      *
      * @return array
      */
-    public function getFieldsWithMockData($fields): array: array
+    public function getFieldsWithMockData($fields): array
     {
         $fieldsWithMockData = [];
 
