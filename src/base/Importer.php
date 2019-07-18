@@ -217,7 +217,7 @@ abstract class Importer
             $className = $this->getModelName();
 
             if (!class_exists($className)) {
-                throw new InvalidArgumentException(Craft::t('sprout-base-import', $className.' namespace on getModelName() method not found.'));
+                throw new InvalidArgumentException($className.' namespace on getModelName() method not found.');
             }
 
             $this->model = new $className();
