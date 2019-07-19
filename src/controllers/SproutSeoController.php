@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutbaseimport\controllers;
 
-use barrelstrength\sproutseo\integrations\sproutimport\importers\elements\Redirect as RedirectImporter;
+use barrelstrength\sproutbaseredirects\integrations\sproutimport\importers\elements\Redirect as RedirectImporter;
 use Craft;
 use craft\errors\MissingComponentException;
 use craft\web\Controller;
