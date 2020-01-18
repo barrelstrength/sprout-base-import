@@ -51,12 +51,14 @@ class SeedJob extends Model
     /**
      * @inheritdoc
      */
-    public function rules()
+    protected function defineRules(): array
     {
-        return [
-            [['elementType'], 'required'],
-            [['settings'], 'validateSeedSettings']
-        ];
+        $rules = parent::defineRules();
+
+        $rules[] = [['elementType'], 'required'];
+        $rules[] = [['settings'], 'validateSeedSettings'];
+
+        return $rules;
     }
 
     /**
