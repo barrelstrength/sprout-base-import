@@ -1,3 +1,9 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+Sprout Import has been retired. We recommend using the free, first-party [Feed Me](https://plugins.craftcms.com/feed-me) plugin instead.
+
+----
+
 # Sprout Base Import
 
 A collection of common import classes and libraries for the Sprout Plugins Suite for Craft CMS.
